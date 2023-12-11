@@ -36,5 +36,5 @@ export async function tickKeepMeSignedIn(t: TestController) {
 
 export async function clickLoginButton(t: TestController) {
   await t.click(appLoginPage.loginButton);
-  await t.wait(10000);
+  await t.wait(3000);
 }

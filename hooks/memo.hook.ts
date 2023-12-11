@@ -26,6 +26,16 @@ export async function fillVaultName(t: TestController) {
     .typeText(addVaultPage.vaultName, TEST_VAULT_NAME, { paste: false })
 }
 
+export async function fillDescription(t: TestController) {
+  await t
+    .typeText(addVaultPage.vaultDescription, 'description', { paste: false })
+}
+
+export async function fillVaultTags(t: TestController) {
+  await t
+    .typeText(addVaultPage.vaultTags, 'test-tag,', { paste: false })
+}
+
 export async function clickArchived(t: TestController) {
   await t.click(vaultsPage.archived);
 }
@@ -48,6 +58,18 @@ export async function clickMenu(t: TestController) {
 
 export async function clickArchive(t: TestController) {
   await t.click(vaultPage.archive);
+}
+
+export async function clickCloudStorage(t: TestController) {
+  await t.click(addVaultPage.selectCloudStorage);
+}
+
+export async function clickPrivateVault(t: TestController) {
+  await t.click(addVaultPage.selectPrivateVault);
+}
+
+export async function clickNext(t: TestController) {
+  await t.click(addVaultPage.next);
 }
 
 export async function postTestMessage(t: TestController) {

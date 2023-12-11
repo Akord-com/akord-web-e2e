@@ -12,7 +12,12 @@ import {
   clickArchive,
   clickConfirmArchive,
   openVaultsPage,
-  clickArchived
+  clickArchived,
+  clickNext,
+  clickCloudStorage,
+  clickPrivateVault,
+  fillDescription,
+  fillVaultTags
 } from '../hooks/memo.hook'
 import { VaultsPage } from '../pages/vaults.page'
 import { AddVaultPage } from '../pages/add-vault.page'
@@ -26,7 +31,7 @@ const getLocation = ClientFunction(() => document.location.href)
 
 Given('I see the vault page', async t => {
   await t.expect(getLocation()).contains(vaultsPage.url)
-  await t.expect(vaultsPage.vaultsHeader.exists).ok({ timeout: 5000 })
+  await t.expect(vaultsPage.vaultsCreateHeader.exists).ok({ timeout: 2000 })
 })
 
 When('I click on add vault button', async t => {
@@ -45,6 +50,27 @@ When('I click on create vault button', async t => {
 
 When('I click on the vault', async t => {
   await clickVaultName(t)
+})
+
+When('I select cloud storage', async t => {
+  await clickCloudStorage(t)
+})
+
+Then('I see choose the privacy setting for your vault', async t => {
+  await t.expect(getLocation()).contains(addVaultsPage.privacyUrl)
+  await t.expect(addVaultsPage.choosePrivacySettings.exists).ok()
+})
+
+When('I select private', async t => {
+  await clickPrivateVault(t)
+})
+
+Then('I click on next', async t => {
+  await clickNext(t)
+})
+
+Then('I see create new vault', async t => {
+  await t.expect(getLocation()).contains(addVaultsPage.url)
 })
 
 When('I post the message', async t => {
@@ -75,6 +101,22 @@ When('I open the page in new window', async t => {
 Then('I see add new vault page', async t => {
   await t.expect(getLocation()).contains(addVaultsPage.url)
   await t.expect(addVaultsPage.addVaultHeader.exists).ok()
+})
+
+Then('I see choose the type of storage for your vault', async t => {
+  await t.expect(addVaultsPage.chooseStorageType.exists).ok()
+})
+
+When('I put the title of the vault', async t => {
+  await fillVaultName(t)
+})
+
+When('I put description', async t => {
+  await fillDescription(t)
+})
+
+When('I put the tag', async t => {
+  await fillVaultTags(t)
 })
 
 Then('I see the list of vaults', async t => {
