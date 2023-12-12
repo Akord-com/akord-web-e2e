@@ -28,7 +28,6 @@ jobs:
       - id: test-results
         name: Result
         run: |
-          set -eux
           DATA=$(echo $(jq -c . dist/e2e/test-results.json))
           echo "report=$DATA" >> "$GITHUB_OUTPUT"
 
