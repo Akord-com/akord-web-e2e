@@ -11,8 +11,11 @@ export class VaultPage {
   menuButton: Selector
   menu: Selector
   archive: Selector
+  remove: Selector
   archiveVaultModal: Selector
+  removeVaultModal: Selector
   archiveVaultButton: Selector
+  removeVaultButton: Selector
   activityTimeline: Selector
   documents: Selector
 
@@ -32,14 +35,17 @@ export class VaultPage {
     )
     this.menu = Selector('ul').withAttribute('role', 'menu')
     this.archive = Selector('p').withText('Archive vault')
+    this.remove = Selector('p').withText('Remove vault')
     this.activityTimeline = Selector('span').withText('Activity timeline')
     this.documents = Selector('span').withText('Documents')
-    this.archiveVaultModal = Selector('h3')
+    this.archiveVaultModal = Selector('h2')
       .withText('Archive vault')
-      .parent('#form-dialog-title')
-    this.archiveVaultButton = Selector('span')
+    this.removeVaultModal = Selector('h2')
+      .withText('Remove vault')
+    this.archiveVaultButton = Selector('button')
       .withText('Archive vault')
-      .parent('button')
+    this.removeVaultButton = Selector('button')
+      .withText('Remove vault')
   }
 
   findMessagePosted(message: string): Selector {

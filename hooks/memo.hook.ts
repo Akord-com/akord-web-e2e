@@ -60,6 +60,10 @@ export async function clickArchive(t: TestController) {
   await t.click(vaultPage.archive);
 }
 
+export async function clickRemove(t: TestController) {
+  await t.click(vaultPage.remove);
+}
+
 export async function clickCloudStorage(t: TestController) {
   await t.click(addVaultPage.selectCloudStorage);
 }
@@ -88,4 +92,8 @@ export async function findTestMessagePosted(t: TestController) {
 
 export async function clickConfirmArchive(t: TestController) {
   await t.click(vaultPage.archiveVaultButton);
+}
+
+export async function clickConfirmRemove(t: TestController) {
+  await t.click(vaultPage.removeVaultButton);
 }

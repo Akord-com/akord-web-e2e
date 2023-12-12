@@ -17,7 +17,9 @@ import {
   clickCloudStorage,
   clickPrivateVault,
   fillDescription,
-  fillVaultTags
+  fillVaultTags,
+  clickRemove,
+  clickConfirmRemove
 } from '../hooks/memo.hook'
 import { VaultsPage } from '../pages/vaults.page'
 import { AddVaultPage } from '../pages/add-vault.page'
@@ -31,6 +33,10 @@ const getLocation = ClientFunction(() => document.location.href)
 
 Given('I see the vault page', async t => {
   await t.expect(getLocation()).contains(vaultsPage.url)
+  await t.expect(vaultsPage.vaultsCreateHeader.exists).ok({ timeout: 2000 })
+})
+
+Then('I see create the first vault page', async t => {
   await t.expect(vaultsPage.vaultsCreateHeader.exists).ok({ timeout: 2000 })
 })
 
@@ -85,13 +91,25 @@ When('I click on archive the vault', async t => {
   await clickArchive(t)
 })
 
+When('I click on remove the vault', async t => {
+  await clickRemove(t)
+})
+
 When('I click on archive vault button', async t => {
   await clickConfirmArchive(t)
+})
+
+When('I click on remove vault button', async t => {
+  await clickConfirmRemove(t)
 })
 
 When('I refresh the page', async t => {
   await t.eval(() => location.reload())
   await t.wait(2000)
+})
+
+Then('I see archive vault action', async t => {
+  await t.expect(addVaultsPage.archiveVaultMenu.exists).ok()
 })
 
 When('I open the page in new window', async t => {
@@ -155,8 +173,16 @@ Then('I see the confirm archive dialog', async t => {
   await t.expect(vaultPage.archiveVaultModal.exists).ok()
 })
 
+Then('I see the confirm remove dialog', async t => {
+  await t.expect(vaultPage.removeVaultModal.exists).ok()
+})
+
 Then('I see the archived vault', async t => {
   await openVaultsPage(t)
   await clickArchived(t)
   await t.expect((await findTestVault()).exists).ok()
+})
+
+Then('I see remove vault action', async t => {
+  await t.expect(addVaultsPage.removeVaultMenu.exists).ok()
 })

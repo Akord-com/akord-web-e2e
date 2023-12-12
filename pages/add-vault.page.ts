@@ -22,6 +22,8 @@ export class AddVaultPage {
   createVaultButton: Selector
   table: Selector
   row: Selector
+  archiveVaultMenu: Selector
+  removeVaultMenu: Selector
 
   constructor() {
     this.host = getEnvironment().url.hostname
@@ -42,5 +44,7 @@ export class AddVaultPage {
     this.vaultDescription = '#enter-description'
     this.vaultTags = '#tags-input'
     this.createVaultButton = Selector('button').withText('Create vault')
+    this.archiveVaultMenu = Selector('p').withText('Archive vault')
+    this.removeVaultMenu = Selector('p').withText('Remove vault')
   }
 }

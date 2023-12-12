@@ -25,7 +25,7 @@ export class VaultsPage {
     this.table = Selector('table')
     this.row = Selector('table > tbody > tr')
     this.active = Selector('span').withExactText('Active')
-    this.archived = Selector('span').withExactText('Archived')
+    this.archived = Selector('#room-tab-1').withExactText('Archived')
   }
 
   findRow(id: string): Selector {
