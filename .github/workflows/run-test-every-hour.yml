@@ -32,7 +32,7 @@ jobs:
         with:
           name: JEST Tests
           path: dist/e2e/test-results.json
-          reporter: dart-json
+          reporter: flutter-json
 
   send-discord-notification:
     needs: e2e-tests
