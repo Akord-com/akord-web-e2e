@@ -58,3 +58,4 @@ jobs:
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           content: "${{needs.e2e-tests.outputs.outputreport}}"
+          embed-title: "FrontEnd Tests"
