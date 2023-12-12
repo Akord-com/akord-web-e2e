@@ -1,8 +1,7 @@
 name: Run tests every hour
 on:
-  [push]
-  # schedule:
-  # - cron: "0 * * * *"
+  schedule:
+  - cron: "0 * * * *"
 
 jobs:
   e2e-tests:
@@ -35,22 +34,21 @@ jobs:
           passed=$(echo "$report_json" | jq -r '.passed')
           total=$(echo "$report_json" | jq -r '.total')
           skipped=$(echo "$report_json" | jq -r '.skipped')
-          parsed_report="Passed $passed/$total ($skipped skipped)" 
+          parsed_report="FrontEnd Tests: Passed $passed/$total ($skipped skipped)" 
           echo $parsed_report
           echo "report=$parsed_report" >> "$GITHUB_OUTPUT"
 
           if [ $((passed + skipped)) == $total ]; then
             echo "Tests passed!"
-            echo "::set-output name=status::success"
           else
             echo "Tests failed!"
-            echo "::set-output name=status::failure"
+            exit 1
           fi
 
   send-discord-notification:
     needs: e2e-tests
     runs-on: ubuntu-latest
-    if: ${{ needs.e2e-tests.result == 'success' }}  # Always run this job, regardless of the outcome of the previous job
+    if: ${{ needs.e2e-tests.result == 'failure' }}
 
     steps:
       - name: Notify Discord on job status
@@ -58,4 +56,3 @@ jobs:
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           content: "${{needs.e2e-tests.outputs.outputreport}}"
-          embed-title: "FrontEnd Tests"

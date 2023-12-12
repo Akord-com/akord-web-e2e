@@ -27,5 +27,5 @@ Feature: Vault create and remove
     Then I see remove vault action
     When I click on remove the vault
     Then I see the confirm remove dialog
-    When I click on remove vault button
+    When I click on remov vault button
     Then I see create the first vault page
