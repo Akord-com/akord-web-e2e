@@ -15,10 +15,12 @@ jobs:
     env:
       E2E_URL: 'https://dev.akord.link'
     steps:
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
       - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
       - name: Install TestCafe from 'npm' and Run Tests
         uses: DevExpress/testcafe-action@latest
         with:
