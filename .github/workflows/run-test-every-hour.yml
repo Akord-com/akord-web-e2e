@@ -13,11 +13,14 @@ jobs:
       outputtest: ${{ steps.test.outputs.report }}
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [ubuntu-latest]
         node: [14]
     env:
       E2E_URL: 'https://dev.akord.link'
     steps:
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: latest
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
