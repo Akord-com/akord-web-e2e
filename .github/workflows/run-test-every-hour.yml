@@ -1,8 +1,7 @@
 name: Run tests every hour
 on:
-  [push]
-  # schedule:
-  # - cron: "0 * * * *"
+  schedule:
+  - cron: "0 * * * *"
 
 jobs:
   e2e-tests:
@@ -42,10 +41,8 @@ jobs:
 
           if [ $((passed + skipped)) == $total ]; then
             echo "Tests passed!"
-            echo "::set-output name=status::success"
           else
             echo "Tests failed!"
-            echo "::set-output name=status::failure"
             exit 1
           fi
 
