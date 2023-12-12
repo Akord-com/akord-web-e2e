@@ -27,7 +27,7 @@ jobs:
         run: npm run e2e:headless
       - id: testreport
         name: Echo report
-        run: echo "report=$(jq -c . dist/e2e/test-results.json)" >> $GITHUB_OUTPUT
+        run: echo "report=$(jq -c . dist/e2e/test-results.json)" >> "$GITHUB_OUTPUT"
 
   send-discord-notification:
     needs: e2e-tests
