@@ -38,4 +38,4 @@ jobs:
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           raw-data: ${{ needs.e2e-tests.outputs.report}}
-          content: ${{ job.status == 'success' && 'Frontend Tests Success' || 'Frontend Tests Failed' }}
+          # content: ${{ job.status == 'success' && 'Frontend Tests Success' || 'Frontend Tests Failed' }}
