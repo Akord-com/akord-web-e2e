@@ -5,12 +5,19 @@ on:
 
 jobs:
   test:
-    name: Run TestCafe Tests
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Check out the repository
+      - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Run tests
-        uses: DevExpress/testcafe-action@latest
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          args: "chrome tests"
+          node-version: '14'  # Adjust the Node.js version as needed
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run TestCafe
+        run: npm run e2e
