@@ -41,7 +41,7 @@ jobs:
       - name: Parse json report
         id: report_to_send
         run: |
-          report_json=$(echo ${{ needs.e2e-tests.outputs.outputreport }})
+          report_json='${{ needs.e2e-tests.outputs.outputreport }}'
           passed=$(echo "$report_json" | jq -r '.passed')
           total=$(echo "$report_json" | jq -r '.total')
           skipped=$(echo "$report_json" | jq -r '.skipped')
@@ -52,5 +52,4 @@ jobs:
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          raw-data: ${{ needs.e2e-tests.outputs.outputreport }}
           content: "${{needs.send-discord-notification.report_to_send.report_to_send}}"
