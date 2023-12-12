@@ -9,7 +9,7 @@ jobs:
     name: Run TestCafe Tests
     runs-on: ${{ matrix.os }}
     outputs:
-      output-report: ${{ steps.testreport.outputs.report }}
+      outputreport: ${{ steps.testreport.outputs.report }}
     strategy:
       matrix:
         os: [windows-latest]
@@ -36,11 +36,11 @@ jobs:
 
     steps:
       - name: Echo report raw
-        run: echo ${{ needs.e2e-tests.outputs.output-report }}
+        run: echo ${{ needs.e2e-tests.outputs.outputreport }}
       - name: Echo report
-        run: echo ${{ fromJson(needs.e2e-tests.outputs.output-report) }}
+        run: echo ${{ fromJson(needs.e2e-tests.outputs.outputreport) }}
       - name: Notify Discord on job status
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          raw-data: ${{ fromJson(needs.e2e-tests.outputs.output-report) }}
+          raw-data: ${{ fromJson(needs.e2e-tests.outputs.outputreport) }}
