@@ -25,7 +25,7 @@ jobs:
         run: npm install
       - id: testcafe
         name: Run TestCafe
-        run: npm run e2e:headless && echo "report=$(jq -c . < dist/e2e/test-results.json)" >> $GITHUB_OUTPUT
+        run: npm run e2e:headless && echo "report=$(jq -c . dist/e2e/test-results.json)" >> $GITHUB_OUTPUT
 
   send-discord-notification:
     needs: e2e-tests
