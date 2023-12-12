@@ -9,7 +9,7 @@ jobs:
     name: Run TestCafe Tests
     runs-on: ${{ matrix.os }}
     outputs:
-      report: ${{ steps.testcafe.outputs.report }}
+      output-report: ${{ steps.testreport.outputs.report }}
     strategy:
       matrix:
         os: [windows-latest]
@@ -23,11 +23,11 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: npm install
-      - id: testcafe
-        name: Run TestCafe
-        run: npm run e2e:headless && echo "::set-output name=report::$(jq -c . dist/e2e/test-results.json)"
-      - name: Echo report
-        run: echo $(jq -c . dist/e2e/test-results.json) 
+      - name: Run TestCafe
+        run: npm run e2e:headless
+      - id: testreport
+        name: Echo report
+        run: echo "report=$(jq -c . dist/e2e/test-results.json)" >> $GITHUB_OUTPUT
 
   send-discord-notification:
     needs: e2e-tests
@@ -36,9 +36,9 @@ jobs:
 
     steps:
       - name: Echo report
-        run: echo ${{ fromJson(needs.e2e-tests.outputs.report) }}
+        run: echo ${{ fromJson(needs.e2e-tests.outputs.output-report) }}
       - name: Notify Discord on job status
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          raw-data: ${{ fromJson(needs.e2e-tests.outputs.report) }}
+          raw-data: ${{ fromJson(needs.e2e-tests.outputs.output-report) }}
