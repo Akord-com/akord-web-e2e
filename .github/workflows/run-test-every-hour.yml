@@ -52,7 +52,7 @@ jobs:
   send-discord-notification:
     needs: e2e-tests
     runs-on: ubuntu-latest
-    if: ${{ needs.e2e-tests.outputs.status == 'failure' }}
+    if: ${{ failure() }}
 
     steps:
       - name: Notify Discord on job status
