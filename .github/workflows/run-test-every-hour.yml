@@ -1,8 +1,7 @@
 name: Run tests every hour
 on:
-  [push]
-  # schedule:
-  # - cron: "0 * * * *"
+  schedule:
+  - cron: "0 * * * *"
 
 jobs:
   build:
@@ -10,7 +9,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [windows-latest]
         node: [14]
     env:
       E2E_URL: 'https://dev.akord.link'
