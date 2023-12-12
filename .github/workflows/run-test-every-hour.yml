@@ -35,6 +35,8 @@ jobs:
     if: ${{ needs.e2e-tests.result == 'success' }}  # Always run this job, regardless of the outcome of the previous job
 
     steps:
+      - name: Echo report
+        run: echo ${{ fromJson(needs.e2e-tests.outputs.report) }}
       - name: Notify Discord on job status
         uses: tsickert/discord-webhook@v5.3.0
         with:
