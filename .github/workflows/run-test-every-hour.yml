@@ -1,24 +1,25 @@
 name: Run tests every hour
 on:
-  schedule:
-  - cron: "*/10 * * * *"
+  [push]
+  # schedule:
+  # - cron: "0 * * * *"
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  build:
+    name: Run TestCafe Tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: [14]
     env:
       E2E_URL: 'https://dev.akord.link'
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v1
         with:
-          node-version: '14'  # Adjust the Node.js version as needed
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run TestCafe
-        run: npm run e2e
+          node-version: ${{ matrix.node }}
+      - uses: actions/checkout@v2
+      - name: Install TestCafe from 'npm' and Run Tests
+        uses: DevExpress/testcafe-action@latest
+        with:
+          args: "chrome **/*.feature dist/**/*.steps.js -e -L"
