@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run TestCafe
-        run: npm run e2e
+        run: npm run e2e:headless
       - id: testreport
         name: Echo report
         run: |
@@ -35,9 +35,17 @@ jobs:
           passed=$(echo "$report_json" | jq -r '.passed')
           total=$(echo "$report_json" | jq -r '.total')
           skipped=$(echo "$report_json" | jq -r '.skipped')
-          parsed_report="FrontEnd Tests\nPassed $passed/$total ($skipped skipped)" 
+          parsed_report="Passed $passed/$total ($skipped skipped)" 
           echo $parsed_report
           echo "report=$parsed_report" >> "$GITHUB_OUTPUT"
+
+          if [ $((passed + skipped)) == $total ]; then
+            echo "Tests passed!"
+            echo "::set-output name=status::success"
+          else
+            echo "Tests failed!"
+            echo "::set-output name=status::failure"
+          fi
 
   send-discord-notification:
     needs: e2e-tests
