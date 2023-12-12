@@ -25,7 +25,7 @@ jobs:
         run: npm install
       - id: testcafe
         name: Run TestCafe
-        run: npm run e2e:headless && echo "report=$(jq -c . dist/e2e/test-results.json)" >> $GITHUB_OUTPUT
+        run: npm run e2e:headless && echo "::set-output name=report::$(jq -c . dist/e2e/test-results.json)"
       - name: Echo report
         run: echo $(jq -c . dist/e2e/test-results.json) 
 
@@ -39,4 +39,4 @@ jobs:
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          raw-data: ${{ needs.e2e-tests.outputs.report}}
+          raw-data: ${{ fromJson(needs.e2e-tests.outputs.report) }}
