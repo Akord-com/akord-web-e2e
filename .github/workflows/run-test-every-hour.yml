@@ -10,6 +10,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     outputs:
       outputreport: ${{ steps.testreport.outputs.report }}
+      status: ${{ steps.testreport.outputs.status}}
     strategy:
       matrix:
         os: [ubuntu-latest]
@@ -41,15 +42,17 @@ jobs:
 
           if [ $((passed + skipped)) == $total ]; then
             echo "Tests passed!"
+            echo "::set-output name=status::success"
           else
             echo "Tests failed!"
+            echo "::set-output name=status::failure"
             exit 1
           fi
 
   send-discord-notification:
     needs: e2e-tests
     runs-on: ubuntu-latest
-    if: ${{ needs.e2e-tests.result == 'failure' }}
+    if: ${{ needs.e2e-tests.outputs.status == 'failure' }}
 
     steps:
       - name: Notify Discord on job status
