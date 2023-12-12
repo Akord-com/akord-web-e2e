@@ -8,8 +8,8 @@ jobs:
   e2e-tests:
     name: Run TestCafe Tests
     runs-on: ${{ matrix.os }}
-    outputs:
-      report: ${{ steps.testcafe.outputs.report }}
+    # outputs:
+    #   report: ${{ steps.testcafe.outputs.report }}
     strategy:
       matrix:
         os: [windows-latest]
@@ -25,7 +25,7 @@ jobs:
         run: npm install
       - id: testcafe
         name: Run TestCafe
-        run: npm run e2e && dist/e2e/test-results.json >> $GITHUB_OUTPUT
+        run: npm run e2e:headless
       - name: Test Report
         uses: dorny/test-reporter@v1
         if: ${{ always() }}  # Always run this job, regardless of the outcome of the previous job
