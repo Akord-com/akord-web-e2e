@@ -37,5 +37,4 @@ jobs:
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          raw-data: ${{ needs.e2e-tests.outputs.report}}
-          # content: ${{ job.status == 'success' && 'Frontend Tests Success' || 'Frontend Tests Failed' }}
+          raw-data: ${{ fromJSON(needs.e2e-tests.outputs.report) }}
