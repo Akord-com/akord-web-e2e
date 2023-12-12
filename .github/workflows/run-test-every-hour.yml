@@ -10,7 +10,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     outputs:
       outputreport: ${{ steps.testreport.outputs.report }}
-      outputtest: ${{ steps.test.outputs.report }}
     strategy:
       matrix:
         os: [ubuntu-latest]
@@ -32,9 +31,6 @@ jobs:
       - id: testreport
         name: Echo report
         run: echo "report=$(jq -c . dist/e2e/test-results.json)" >> "$GITHUB_OUTPUT"
-      - id: test
-        name: Echo report
-        run: echo "report=elo" >> "$GITHUB_OUTPUT"
 
   send-discord-notification:
     needs: e2e-tests
@@ -44,12 +40,8 @@ jobs:
     steps:
       - name: Echo report raw
         run: echo ${{ needs.e2e-tests.outputs.outputreport }}
-      - name: Echo test raw
-        run: echo ${{ needs.e2e-tests.outputs.outputtest }}
-      - name: Echo report
-        run: echo ${{ fromJson(needs.e2e-tests.outputs.outputreport) }}
       - name: Notify Discord on job status
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          raw-data: ${{ fromJson(needs.e2e-tests.outputs.outputreport) }}
+          raw-data: ${{ needs.e2e-tests.outputs.outputreport }}
