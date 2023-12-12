@@ -1,4 +1,3 @@
-@only
 Feature: Login
 
   Scenario: Successful Login
