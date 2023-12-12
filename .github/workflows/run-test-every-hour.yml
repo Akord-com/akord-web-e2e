@@ -1,13 +1,14 @@
 name: Run tests every hour
 on:
-  [push]
-  # schedule:
-  # - cron: "0 * * * *"
+  schedule:
+  - cron: "0 * * * *"
 
 jobs:
   e2e-tests:
     name: Run TestCafe Tests
     runs-on: ${{ matrix.os }}
+    outputs:
+      report: ${{ steps.testcafe.outputs.report }}
     strategy:
       matrix:
         os: [windows-latest]
@@ -21,8 +22,17 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: npm install
-      - name: Run TestCafe
-        run: npm run e2e
+      - id: testcafe
+        name: Run TestCafe
+        run: npm run e2e && dist/e2e/test-results.json >> $GITHUB_OUTPUT
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: ${{ always() }}  # Always run this job, regardless of the outcome of the previous job
+        with:
+          name: JEST Tests
+          path: dist/e2e/test-results.xml
+          reporter: jest-junit
+
   send-discord-notification:
     needs: e2e-tests
     runs-on: ubuntu-latest
@@ -30,7 +40,7 @@ jobs:
 
     steps:
       - name: Notify Discord on job status
-        uses: appleboy/discord-action@v1.0.0
+        uses: tsickert/discord-webhook@v5.3.0
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          color: ${{ job.status == 'success' && '00ff00' || 'ff0000' }}
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          content: ${{ job.status == 'success' && 'Frontend Tests Success' || 'Frontend Tests Failed' }}
