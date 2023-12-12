@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: Notify Discord on job status
-        uses: appleboy/discord-action@v0.0.1
+        uses: appleboy/discord-action@v1.0.0
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           color: ${{ job.status == 'success' && '00ff00' || 'ff0000' }}
