@@ -46,6 +46,7 @@ jobs:
           total=$(echo "$report_json" | jq -r '.total')
           skipped=$(echo "$report_json" | jq -r '.skipped')
           parsed_report="Passed $passed/$total ($skipped skipped)" 
+          echo $parsed_report
           echo "report_to_send=$parsed_report" >> "$GITHUB_OUTPUT"
       - name: Notify Discord on job status
         uses: tsickert/discord-webhook@v5.3.0
