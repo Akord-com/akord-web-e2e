@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "e2e:compile": "tsc -p tsconfig.json",
-    "e2e": "npm run e2e:compile && gherkin-testcafe chrome features/*.feature dist/**/*.steps.js -e --hostname localhost; echo 'Done'",
+    "e2e": "npm run e2e:compile && gherkin-testcafe chrome features/*.feature dist/**/*.steps.js -r json:dist/e2e/test-results.json -e --hostname localhost; echo 'Done'",
     "e2e:debug": "npm run e2e:compile && gherkin-testcafe chrome **/*.feature dist/**/*.steps.js -e --hostname localhost -d",
     "e2e:headless": "npm run e2e:compile && gherkin-testcafe 'chrome:headless' features/*.feature dist/**/*.steps.js -r json:dist/e2e/test-results.json -e --hostname localhost; echo 'Done'",
     "e2e:headless:dev": "npm run e2e:compile && gherkin-testcafe 'chrome:headless' e2e/**/*.feature dist/**/*.steps.js -e --screenshots-on-fails",

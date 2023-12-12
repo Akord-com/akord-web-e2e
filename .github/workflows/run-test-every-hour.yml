@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run TestCafe
-        run: npm run e2e:headless
+        run: npm run e2e
       - id: testreport
         name: Echo report
         run: |
@@ -35,7 +35,7 @@ jobs:
           passed=$(echo "$report_json" | jq -r '.passed')
           total=$(echo "$report_json" | jq -r '.total')
           skipped=$(echo "$report_json" | jq -r '.skipped')
-          parsed_report="Passed $passed/$total ($skipped skipped)" 
+          parsed_report="FrontEnd Tests\nPassed $passed/$total ($skipped skipped)" 
           echo $parsed_report
           echo "report=$parsed_report" >> "$GITHUB_OUTPUT"
 
