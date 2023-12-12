@@ -1,12 +1,13 @@
 name: Run tests every hour
 on:
   schedule:
-  - cron: "*/5 * * * *"
+  - cron: "*/10 * * * *"
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    env:
+      E2E_URL: 'https://dev.akord.link'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
