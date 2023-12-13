@@ -18,6 +18,11 @@ export class VaultPage {
   removeVaultButton: Selector
   activityTimeline: Selector
   documents: Selector
+  addFileHeader: Selector
+  uploadEncryptedFilesHeader: Selector
+  inputUploadFile: Selector
+  uploadFile: Selector
+  upload: Selector
 
   constructor() {
     this.host = getEnvironment().url.hostname
@@ -46,6 +51,14 @@ export class VaultPage {
       .withText('Archive vault')
     this.removeVaultButton = Selector('button')
       .withText('Remove vault')
+    this.addFileHeader = Selector('h1')
+      .withText('Add an file')
+    this.uploadFile = Selector('span')
+      .withText('Upload a file').nth(1)
+    this.upload = Selector('button')
+      .withText('Upload')
+    this.uploadEncryptedFilesHeader = Selector('p').withText('Upload encrypted files')
+    this.inputUploadFile = Selector('#contained-button-file')
   }
 
   findMessagePosted(message: string): Selector {
