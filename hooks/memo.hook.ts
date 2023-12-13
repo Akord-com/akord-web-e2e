@@ -60,12 +60,20 @@ export async function clickArchive(t: TestController) {
   await t.click(vaultPage.archive);
 }
 
+export async function clickUpload(t: TestController) {
+  await t.click(vaultPage.upload);
+}
+
 export async function clickRemove(t: TestController) {
   await t.click(vaultPage.remove);
 }
 
 export async function clickCloudStorage(t: TestController) {
   await t.click(addVaultPage.selectCloudStorage);
+}
+
+export async function clickUploadFile(t: TestController) {
+  await t.click(vaultPage.uploadFile);
 }
 
 export async function clickPrivateVault(t: TestController) {

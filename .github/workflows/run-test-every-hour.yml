@@ -1,5 +1,6 @@
 name: Run tests every hour
 on:
+  # [push]
   schedule:
   - cron: "0 * * * *"
 
@@ -28,6 +29,12 @@ jobs:
         run: npm install
       - name: Run TestCafe
         run: npm run e2e:headless
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: |
+            dist/e2e/test-results.xml
       - id: testreport
         name: Echo report
         run: |

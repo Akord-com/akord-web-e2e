@@ -19,7 +19,9 @@ import {
   fillDescription,
   fillVaultTags,
   clickRemove,
-  clickConfirmRemove
+  clickConfirmRemove,
+  clickUploadFile,
+  clickUpload
 } from '../hooks/memo.hook'
 import { VaultsPage } from '../pages/vaults.page'
 import { AddVaultPage } from '../pages/add-vault.page'
@@ -60,6 +62,29 @@ When('I click on the vault', async t => {
 
 When('I select cloud storage', async t => {
   await clickCloudStorage(t)
+})
+
+Then('I see add file page', async t => {
+  await t.expect(vaultPage.addFileHeader.exists).ok()
+})
+
+Then('I see upload encrypted files', async t => {
+  await t.expect(vaultPage.uploadEncryptedFilesHeader.exists).ok()
+})
+
+When('I click on upload dialog box', async t => {
+  await clickUpload(t)
+})
+
+When('I click on upload a file', async t => {
+  // await clickUploadFile(t)
+  await t
+    .setFilesToUpload(vaultPage.inputUploadFile, [
+      '../static/akord.png',
+    ])
+    .click(vaultPage.uploadFile);
+    // .click(vaultPage.upload);
+  await t.wait(5000)
 })
 
 Then('I see choose the privacy setting for your vault', async t => {
