@@ -10,7 +10,7 @@
     "e2e:headless": "npm run e2e:compile && gherkin-testcafe 'chrome:headless' features/*.feature dist/**/*.steps.js -r json:dist/e2e/test-results.json -e --hostname localhost; echo 'Done'",
     "e2e:headless:dev": "npm run e2e:compile && gherkin-testcafe 'chrome:headless' e2e/**/*.feature dist/**/*.steps.js -e --screenshots-on-fails",
     "e2e:only": "npm run e2e:compile && gherkin-testcafe chrome **/*.feature dist/**/*.steps.js -e --hostname localhost --tags @only -L",
-    "e2e:only:headless": "npm run e2e:compile && gherkin-testcafe chrome:headless **/*.feature dist/**/*.steps.js -r json:dist/e2e/test-results.json -e --hostname localhost --tags @only",
+    "e2e:only:headless": "npm run e2e:compile && gherkin-testcafe chrome:headless **/*.feature dist/**/*.steps.js -r spec,xunit:dist/e2e/test-results.xml,json:dist/e2e/test-results.json -e --hostname localhost --tags @only",
     "e2e:only:debug": "npm run e2e:compile && gherkin-testcafe chrome **/*.feature dist/**/*.steps.js -e --hostname localhost --tags @only -d",
     "e2e:only:video": "npm run e2e:compile && gherkin-testcafe chrome **/*.feature dist/**/*.steps.js -e --hostname localhost --tags @only --video videos --video-options singleFile=true,failedOnly=false"
   },
