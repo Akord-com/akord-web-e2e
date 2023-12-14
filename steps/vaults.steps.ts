@@ -21,7 +21,8 @@ import {
   clickRemove,
   clickConfirmRemove,
   clickUploadFile,
-  clickUpload
+  clickUpload,
+  findUploadedFile
 } from '../hooks/memo.hook'
 import { VaultsPage } from '../pages/vaults.page'
 import { AddVaultPage } from '../pages/add-vault.page'
@@ -35,7 +36,7 @@ const getLocation = ClientFunction(() => document.location.href)
 
 Given('I see the vault page', async t => {
   await t.expect(getLocation()).contains(vaultsPage.url)
-  await t.expect(vaultsPage.vaultsCreateHeader.exists).ok({ timeout: 2000 })
+  await t.expect(vaultsPage.vaultsHeader.exists).ok({ timeout: 2000 })
 })
 
 Then('I see create the first vault page', async t => {
@@ -69,22 +70,19 @@ Then('I see add file page', async t => {
 })
 
 Then('I see upload encrypted files', async t => {
-  await t.expect(vaultPage.uploadEncryptedFilesHeader.exists).ok()
+  await t.expect(vaultPage.uploadEncryptedFilesHeader.exists).ok({timeout: 2000})
 })
 
 When('I click on upload dialog box', async t => {
   await clickUpload(t)
+  await t.wait(5000)
 })
 
 When('I click on upload a file', async t => {
-  // await clickUploadFile(t)
   await t
     .setFilesToUpload(vaultPage.inputUploadFile, [
       '../static/akord.png',
     ])
-    .click(vaultPage.uploadFile);
-    // .click(vaultPage.upload);
-  await t.wait(5000)
 })
 
 Then('I see choose the privacy setting for your vault', async t => {
@@ -173,6 +171,10 @@ Then('I see the vaults page', async t => {
 
 Then('I see new vault created', async t => {
   await t.expect((await findTestVault()).exists).ok()
+})
+
+Then('I see uploaded file', async t => {
+  await t.expect((await findUploadedFile()).exists).ok({timeout: 3000})
 })
 
 Then('I see vault page', async t => {

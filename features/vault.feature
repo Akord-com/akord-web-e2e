@@ -1,7 +1,7 @@
 @login_keep_me_signed_in
 Feature: Vault create and remove
 
-  Scenario: Create vault and remove
+  Scenario: Create & Remove Vault
     Given I see the vault page
     When I click on add vault button
     Then I see choose the type of storage for your vault
