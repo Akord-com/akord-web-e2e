@@ -6,6 +6,7 @@ export class AddVaultPage {
   url: string
   privacyUrl: string
   addVaultHeader: Selector
+  allClearPage: Selector
   vaultsCreateHeader: Selector
   chooseStorageType: Selector
   vaultsHeader: Selector
@@ -46,5 +47,6 @@ export class AddVaultPage {
     this.createVaultButton = Selector('button').withText('Create vault')
     this.archiveVaultMenu = Selector('p').withText('Archive vault')
     this.removeVaultMenu = Selector('p').withText('Remove vault')
+    this.allClearPage = Selector('h1').withText('All clear')
   }
 }

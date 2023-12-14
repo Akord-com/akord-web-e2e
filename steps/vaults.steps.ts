@@ -20,9 +20,9 @@ import {
   fillVaultTags,
   clickRemove,
   clickConfirmRemove,
-  clickUploadFile,
   clickUpload,
-  findUploadedFile
+  findUploadedFile,
+  clickVaultMenu
 } from '../hooks/memo.hook'
 import { VaultsPage } from '../pages/vaults.page'
 import { AddVaultPage } from '../pages/add-vault.page'
@@ -110,6 +110,10 @@ When('I click on menu', async t => {
   await clickMenu(t)
 })
 
+When('I click on vault menu', async t => {
+  await clickVaultMenu(t)
+})
+
 When('I click on archive the vault', async t => {
   await clickArchive(t)
 })
@@ -142,6 +146,10 @@ When('I open the page in new window', async t => {
 Then('I see add new vault page', async t => {
   await t.expect(getLocation()).contains(addVaultsPage.url)
   await t.expect(addVaultsPage.addVaultHeader.exists).ok()
+})
+
+Then('I see all clear page', async t => {
+  await t.expect(addVaultsPage.allClearPage.exists).ok()
 })
 
 Then('I see choose the type of storage for your vault', async t => {
@@ -186,10 +194,6 @@ Then('I see vault page', async t => {
 
 Then('I see message posted', async t => {
   await t.expect((await findTestMessagePosted(t)).exists).ok()
-})
-
-Then('I see the menu', async t => {
-  await t.expect(vaultPage.menu.exists).ok()
 })
 
 Then('I see the menu', async t => {

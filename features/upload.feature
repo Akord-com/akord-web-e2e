@@ -1,4 +1,4 @@
-@login_keep_me_signed_in @only
+@login_keep_me_signed_in
 Feature: Upload file to vault
   
   @vault 
