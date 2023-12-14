@@ -22,5 +22,6 @@ Feature: Upload file to vault
     When I click on upload a file
     Then I see upload encrypted files
     When I click on upload dialog box
+    Then I see uploaded file
     
 

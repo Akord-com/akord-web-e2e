@@ -7,6 +7,7 @@ const vaultsPage = new VaultsPage();
 const vaultPage = new VaultPage();
 const addVaultPage = new AddVaultPage();
 const TEST_VAULT_NAME = Math.random().toString(36).substr(2, 10);
+const TEST_UPLOAD_FILE = "akord.png"
 const TEST_MESSAGE = 'test message'
 
 
@@ -45,7 +46,7 @@ export async function clickAddVaultButton(t: TestController) {
 }
 
 export async function clickCreateVaultButton(t: TestController) {
-  await t.click(vaultsPage.addVaultButton);
+  await t.click(vaultsPage.createVaultButton);
 }
 
 export async function clickVaultName(t: TestController) {
@@ -92,6 +93,10 @@ export async function postTestMessage(t: TestController) {
 
 export async function findTestVault() {
   return vaultsPage.findRow(TEST_VAULT_NAME);
+}
+
+export async function findUploadedFile() {
+  return vaultsPage.findRow(TEST_UPLOAD_FILE);
 }
 
 export async function findTestMessagePosted(t: TestController) {

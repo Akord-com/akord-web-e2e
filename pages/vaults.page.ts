@@ -7,6 +7,7 @@ export class VaultsPage {
   vaultsCreateHeader: Selector
   vaultsHeader: Selector
   addVaultButton: Selector
+  createVaultButton: Selector
   selectCloudStorage: Selector
   next: Selector
   table: Selector
@@ -19,7 +20,8 @@ export class VaultsPage {
     this.url = `${getEnvironment().url.href}vaults/active`
     this.vaultsCreateHeader = Selector('h1').withText('Create your first vault')
     this.vaultsHeader = Selector('h2').withText('Vaults')
-    this.addVaultButton = Selector('button').withText('Create vault')
+    this.addVaultButton = Selector('button').withText('New vault')
+    this.createVaultButton = Selector('button').withText('Create vault')
     this.selectCloudStorage = Selector('input').withText('Cloud storage')
     this.next = Selector('button').withText('Next')
     this.table = Selector('table')
