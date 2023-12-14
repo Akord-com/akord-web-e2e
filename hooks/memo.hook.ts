@@ -1,4 +1,4 @@
-import { Before } from '@cucumber/cucumber';
+import { After, Before } from '@cucumber/cucumber';
 import { VaultsPage } from '../pages/vaults.page';
 import { AddVaultPage } from '../pages/add-vault.page';
 import { VaultPage } from '../pages/vault.page';
@@ -14,8 +14,27 @@ const TEST_MESSAGE = 'test message'
 Before('@vault', async (t) => {
   await openVaultsPage(t)
   await clickAddVaultButton(t)
+  await clickCloudStorage(t);
+  await clickNext(t);
+  await clickPrivateVault(t);
+  await clickNext(t);
   await fillVaultName(t)
+  await fillDescription(t);
+  await fillVaultTags(t);
   await clickCreateVaultButton(t)
+});
+
+After('@vault', async (t) => {
+  await openVaultsPage(t)
+  await clickVaultName(t);
+  await clickVaultMenu(t);
+  await clickArchive(t);
+  await clickConfirmArchive(t);
+  await openVaultsPage(t)
+  await clickArchived(t);
+  await clickMenu(t);
+  await clickRemove(t);
+  await clickConfirmRemove(t);
 });
 
 export async function openVaultsPage(t: TestController) {
@@ -51,6 +70,10 @@ export async function clickCreateVaultButton(t: TestController) {
 
 export async function clickVaultName(t: TestController) {
   await t.click(vaultsPage.findRow(TEST_VAULT_NAME));
+}
+
+export async function clickVaultMenu(t: TestController) {
+  await t.click(vaultPage.menuHeaderButton);
 }
 
 export async function clickMenu(t: TestController) {

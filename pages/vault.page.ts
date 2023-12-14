@@ -9,6 +9,7 @@ export class VaultPage {
   message: Selector
   postMessage: Selector
   menuButton: Selector
+  menuHeaderButton: Selector
   menu: Selector
   archive: Selector
   remove: Selector
@@ -38,6 +39,10 @@ export class VaultPage {
       'aria-label',
       'display more actions'
     )
+    this.menuHeaderButton = Selector('button').withAttribute(
+      'aria-label',
+      'display more actions'
+    ).nth(0)
     this.menu = Selector('ul').withAttribute('role', 'menu')
     this.archive = Selector('p').withText('Archive vault')
     this.remove = Selector('p').withText('Remove vault')
