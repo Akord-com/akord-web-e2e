@@ -38,24 +38,41 @@ jobs:
       - id: testreport
         name: Echo report
         run: |
-          passed=$(jq -r '.fixtures[].tests[] | select(.errs | length == 0) | .name' dist/e2e/test-results.json)
-          failed=$(jq -r '.fixtures[].tests[] | select(.errs | length > 0) | .name' dist/e2e/test-results.json)
+          failed_scenarios=$(jq -r '.fixtures[].tests[] | select(.errs | length > 0) | .name' dist/e2e/test-results.json)
+          passed_scenario=$(jq -r '.fixtures[].tests[] | select(.errs | length == 0) | .name' dist/e2e/test-results.json)
+          
+          report_json=$(jq -c . dist/e2e/test-results.json)
+          
+          failed=$(echo "$report_json" | jq -r '.fixtures[].tests[] | select(.errs | length > 0))
+          passed=$(echo "$report_json" | jq -r '.passed')
+          skipped=$(echo "$report_json" | jq -r '.skipped')
+          total=$(echo "$report_json" | jq -r '.total')
+          
+          parsed_report="FrontEnd Tests: Passed $passed/$total ($skipped skipped)" 
+          echo $parsed_report
 
           success_emoji=":white_check_mark:"
           fail_emoji=":x:"
 
-          formatted_passed=$(echo "$passed" | sed -e "s/^/$success_emoji /")
-          formatted_failed=$(echo "$failed" | sed -e "s/^/$fail_emoji /")
+          formatted_successful_tests=$(echo "$successful_tests" | sed -e "s/^/$success_emoji /")
+          formatted_failed_tests=$(echo "$failed_tests" | sed -e "s/^/$fail_emoji /")
+
+          report="$formatted_successful_tests\n$formatted_failed_tests"
+          echo $report
 
           report="$formatted_passed\n$formatted_failed"
           echo "$report"
-          echo "::set-output name=report::$report"
+          
+          delimiter="$(openssl rand -hex 8)"
+          echo "report<<${delimiter}" >> "${GITHUB_OUTPUT}"
+          echo "$report" >> "${GITHUB_OUTPUT}"
+          echo "${delimiter}" >> "${GITHUB_OUTPUT}"
 
-          if [ -z "$failed" ]; then
-              echo "Tests passed!"
+          if [ $((passed + skipped)) == $total ]; then
+            echo "Tests passed!"
           else
-              echo "Tests failed!"
-              exit 1
+            echo "Tests failed!"
+            exit 1
           fi
 
   send-discord-notification:
@@ -68,6 +85,4 @@ jobs:
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          content: |
-            ${{ needs.e2e-tests.outputs.outputreport }}
-
+          content: "${{ needs.e2e-tests.outputs.outputreport }}"
