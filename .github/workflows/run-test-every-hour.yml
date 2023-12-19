@@ -47,7 +47,7 @@ jobs:
           formatted_passed=$(echo "$passed" | sed -e "s/^/$success_emoji /")
           formatted_failed=$(echo "$failed" | sed -e "s/^/$fail_emoji /")
 
-          report="$formatted_passed\n$formatted_failed"
+          report="$formatted_passed"$'\n'"$formatted_failed"
           echo "$report"
           
           delimiter="$(openssl rand -hex 8)"
