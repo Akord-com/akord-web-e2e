@@ -38,13 +38,29 @@ jobs:
       - id: testreport
         name: Echo report
         run: |
+          failed_scenarios=$(jq -r '.fixtures[].tests[] | select(.errs | length > 0) | .name' dist/e2e/test-results.json)
+          passed_scenario=$(jq -r '.fixtures[].tests[] | select(.errs | length == 0) | .name' dist/e2e/test-results.json)
+          
           report_json=$(jq -c . dist/e2e/test-results.json)
+          
+          failed=$(echo "$report_json" | jq -r '.fixtures[].tests[] | select(.errs | length > 0))
           passed=$(echo "$report_json" | jq -r '.passed')
-          total=$(echo "$report_json" | jq -r '.total')
           skipped=$(echo "$report_json" | jq -r '.skipped')
+          total=$(echo "$report_json" | jq -r '.total')
+          
           parsed_report="FrontEnd Tests: Passed $passed/$total ($skipped skipped)" 
           echo $parsed_report
-          echo "report=$parsed_report" >> "$GITHUB_OUTPUT"
+
+          success_emoji=":white_check_mark:"
+          fail_emoji=":x:"
+
+          formatted_successful_tests=$(echo "$successful_tests" | sed -e "s/^/$success_emoji /")
+          formatted_failed_tests=$(echo "$failed_tests" | sed -e "s/^/$fail_emoji /")
+
+          report="$formatted_successful_tests\n$formatted_failed_tests"
+          echo $report
+
+          echo "$report" >> "$GITHUB_OUTPUT"
 
           if [ $((passed + skipped)) == $total ]; then
             echo "Tests passed!"
