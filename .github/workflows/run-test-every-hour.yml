@@ -49,7 +49,7 @@ jobs:
 
           report="$formatted_passed\n$formatted_failed"
           echo "$report"
-          echo "$report" >> "$GITHUB_OUTPUT"
+          echo "::set-output name=report::$report"
 
           if [ -z "$failed" ]; then
               echo "Tests passed!"
