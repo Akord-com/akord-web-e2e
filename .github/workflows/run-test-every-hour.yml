@@ -49,7 +49,11 @@ jobs:
 
           report="$formatted_passed\n$formatted_failed"
           echo "$report"
-          echo "::set-output name=report::$report"
+          
+          delimiter="$(openssl rand -hex 8)"
+          echo "report<<${delimiter}" >> "${GITHUB_OUTPUT}"
+          echo "$report" >> "${GITHUB_OUTPUT}"
+          echo "${delimiter}" >> "${GITHUB_OUTPUT}"
 
           if [ -z "$failed" ]; then
               echo "Tests passed!"
