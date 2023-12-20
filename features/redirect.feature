@@ -1,7 +1,6 @@
-@only
 Feature: Redirect to storage page
   
-  Scenario: Redirect to strage page
+  Scenario: Redirect to internal page after login
     Given I open storage page
     Then I see the landing page of Akord app
     When I fill in the login form with valid user

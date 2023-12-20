@@ -1,9 +1,14 @@
 import { getEnvironment } from '../helper/environment.helper'
 import { Selector } from 'testcafe'
 
+const examplePublicVaultUri = 'public/vaults/active/8f2a6919-9a9a-4c08-8d69-0195e6a80ab5/assets'
+const examplePublicVaultName = "me too.. dont't delete us!"
+
 export class VaultPage {
   host: string
   url: string
+  examplePublicVaultUrl: string
+  examplePublicVaultName: Selector
   created: Selector
   termsOfAccess: Selector
   message: Selector
@@ -28,6 +33,9 @@ export class VaultPage {
   constructor() {
     this.host = getEnvironment().url.hostname
     this.url = `${getEnvironment().url.href}`
+    this.examplePublicVaultUrl = `${getEnvironment().url.href}${examplePublicVaultUri}`
+    this.examplePublicVaultName = Selector('h2')
+      .withText(examplePublicVaultName)
     this.created = Selector('p').withText('Vault created')
     this.termsOfAccess = Selector('a').withText('Terms of access')
     this.message = Selector('textarea').withAttribute(
