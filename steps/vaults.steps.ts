@@ -152,6 +152,10 @@ Then('I see all clear page', async t => {
   await t.expect(addVaultsPage.allClearPage.exists).ok()
 })
 
+Then('I do not see the vault anymore', async t => {
+  await t.expect((await findTestVault()).exists).notOk()
+})
+
 Then('I see choose the type of storage for your vault', async t => {
   await t.expect(addVaultsPage.chooseStorageType.exists).ok()
 })
