@@ -29,4 +29,4 @@ Feature: Vault create and remove
     When I click on remove the vault
     Then I see the confirm remove dialog
     When I click on remove vault button
-    Then I see all clear page
+    Then I do not see the vault anymore

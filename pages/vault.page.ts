@@ -57,7 +57,7 @@ export class VaultPage {
     this.removeVaultButton = Selector('button')
       .withText('Remove vault')
     this.addFileHeader = Selector('h1')
-      .withText('Add an file')
+      .withText('Add a file')
     this.uploadFile = Selector('span')
       .withText('Upload a file').nth(1)
     this.upload = Selector('button')
