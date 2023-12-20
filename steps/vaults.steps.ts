@@ -39,6 +39,10 @@ Given('I see the vault page', async t => {
   await t.expect(vaultsPage.vaultsHeader.exists).ok({ timeout: 2000 })
 })
 
+Given('I open public vault page', async t => {
+  await t.navigateTo(vaultPage.examplePublicVaultUrl);
+})
+
 Then('I see create the first vault page', async t => {
   await t.expect(vaultsPage.vaultsCreateHeader.exists).ok({ timeout: 2000 })
 })
@@ -70,7 +74,7 @@ Then('I see add file page', async t => {
 })
 
 Then('I see upload encrypted files', async t => {
-  await t.expect(vaultPage.uploadEncryptedFilesHeader.exists).ok({timeout: 2000})
+  await t.expect(vaultPage.uploadEncryptedFilesHeader.exists).ok({ timeout: 2000 })
 })
 
 When('I click on upload dialog box', async t => {
@@ -186,7 +190,7 @@ Then('I see new vault created', async t => {
 })
 
 Then('I see uploaded file', async t => {
-  await t.expect((await findUploadedFile()).exists).ok({timeout: 3000})
+  await t.expect((await findUploadedFile()).exists).ok({ timeout: 3000 })
 })
 
 Then('I see vault page', async t => {
@@ -220,4 +224,8 @@ Then('I see the archived vault', async t => {
 
 Then('I see remove vault action', async t => {
   await t.expect(addVaultsPage.removeVaultMenu.exists).ok()
+})
+
+Then('I see public vault page', async t => {
+  await t.expect(vaultPage.examplePublicVaultName.exists).ok({ timeout: 5000 })
 })
