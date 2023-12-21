@@ -43,6 +43,10 @@ Given('I open public vault page', async t => {
   await t.navigateTo(vaultPage.examplePublicVaultUrl);
 })
 
+Given('I open the vault archived page', async t => {
+  await t.navigateTo(vaultPage.urlArchived);
+})
+
 Then('I see create the first vault page', async t => {
   await t.expect(vaultsPage.vaultsCreateHeader.exists).ok({ timeout: 2000 })
 })
@@ -209,21 +213,21 @@ Then('I see the menu', async t => {
 })
 
 Then('I see the confirm archive dialog', async t => {
-  await t.expect(vaultPage.archiveVaultModal.exists).ok()
+  await t.expect(vaultPage.archiveVaultModal.exists).ok({ timeout: 2000 })
 })
 
 Then('I see the confirm remove dialog', async t => {
-  await t.expect(vaultPage.removeVaultModal.exists).ok()
+  await t.expect(vaultPage.removeVaultModal.exists).ok({ timeout: 2000 })
 })
 
 Then('I see the archived vault', async t => {
   await openVaultsPage(t)
   await clickArchived(t)
-  await t.expect((await findTestVault()).exists).ok()
+  await t.expect((await findTestVault()).exists).ok({ timeout: 2000 })
 })
 
 Then('I see remove vault action', async t => {
-  await t.expect(addVaultsPage.removeVaultMenu.exists).ok()
+  await t.expect(addVaultsPage.removeVaultMenu.exists).ok({ timeout: 2000 })
 })
 
 Then('I see public vault page', async t => {
