@@ -7,6 +7,7 @@ const examplePublicVaultName = "me too.. dont't delete us!"
 export class VaultPage {
   host: string
   url: string
+  urlArchived: string
   examplePublicVaultUrl: string
   examplePublicVaultName: Selector
   created: Selector
@@ -33,6 +34,7 @@ export class VaultPage {
   constructor() {
     this.host = getEnvironment().url.hostname
     this.url = `${getEnvironment().url.href}`
+    this.urlArchived = `${getEnvironment().url.href}vaults/archived`
     this.examplePublicVaultUrl = `${getEnvironment().url.href}${examplePublicVaultUri}`
     this.examplePublicVaultName = Selector('h2')
       .withText(examplePublicVaultName)
