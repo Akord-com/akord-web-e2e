@@ -1,3 +1,4 @@
+@only
 Feature: Public file view
   
   Scenario: Show public file in gallery
