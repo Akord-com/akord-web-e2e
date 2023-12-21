@@ -11,7 +11,7 @@ export class StoragePage {
     this.host = getEnvironment().url.hostname
     this.url = `${getEnvironment().url.href}storage`
     this.storageHeader = Selector('h2').withText('Storage')
-    this.availableBadge = Selector('span').withText('Available')
+    this.availableBadge = Selector('span').withText('AVAILABLE')
   }
 
 }
