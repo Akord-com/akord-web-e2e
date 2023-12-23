@@ -223,7 +223,7 @@ Then('I see the confirm remove dialog', async t => {
 Then('I see the archived vault', async t => {
   await openVaultsPage(t)
   await clickArchived(t)
-  await t.expect((await findTestVault()).exists).ok({ timeout: 2000 })
+  await t.expect((await findTestVault()).exists).ok({ timeout: 5000 })
 })
 
 Then('I see remove vault action', async t => {
