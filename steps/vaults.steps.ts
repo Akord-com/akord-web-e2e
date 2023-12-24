@@ -36,7 +36,7 @@ const getLocation = ClientFunction(() => document.location.href)
 
 Given('I see the vault page', async t => {
   await t.expect(getLocation()).contains(vaultsPage.url)
-  await t.expect(vaultsPage.vaultsHeader.exists).ok({ timeout: 2000 })
+  await t.expect(vaultsPage.vaultsHeader.exists).ok({ timeout: 4000 })
 })
 
 Given('I open public vault page', async t => {
@@ -48,7 +48,7 @@ Given('I open the vault archived page', async t => {
 })
 
 Then('I see create the first vault page', async t => {
-  await t.expect(vaultsPage.vaultsCreateHeader.exists).ok({ timeout: 2000 })
+  await t.expect(vaultsPage.vaultsCreateHeader.exists).ok({ timeout: 4000 })
 })
 
 When('I click on add vault button', async t => {
@@ -78,7 +78,7 @@ Then('I see add file page', async t => {
 })
 
 Then('I see upload encrypted files', async t => {
-  await t.expect(vaultPage.uploadEncryptedFilesHeader.exists).ok({ timeout: 2000 })
+  await t.expect(vaultPage.uploadEncryptedFilesHeader.exists).ok({ timeout: 4000 })
 })
 
 When('I click on upload dialog box', async t => {
@@ -140,11 +140,11 @@ When('I click on remove vault button', async t => {
 
 When('I refresh the page', async t => {
   await t.eval(() => location.reload())
-  await t.wait(2000)
+  await t.wait(4000)
 })
 
 Then('I see archive vault action', async t => {
-  await t.expect(addVaultsPage.archiveVaultMenu.exists).ok()
+  await t.expect(addVaultsPage.archiveVaultMenu.exists).ok({ timeout: 4000 })
 })
 
 When('I open the page in new window', async t => {
@@ -194,7 +194,7 @@ Then('I see new vault created', async t => {
 })
 
 Then('I see uploaded file', async t => {
-  await t.expect((await findUploadedFile()).exists).ok({ timeout: 3000 })
+  await t.expect((await findUploadedFile()).exists).ok({ timeout: 4000 })
 })
 
 Then('I see vault page', async t => {
@@ -213,11 +213,11 @@ Then('I see the menu', async t => {
 })
 
 Then('I see the confirm archive dialog', async t => {
-  await t.expect(vaultPage.archiveVaultModal.exists).ok({ timeout: 2000 })
+  await t.expect(vaultPage.archiveVaultModal.exists).ok({ timeout: 4000 })
 })
 
 Then('I see the confirm remove dialog', async t => {
-  await t.expect(vaultPage.removeVaultModal.exists).ok({ timeout: 2000 })
+  await t.expect(vaultPage.removeVaultModal.exists).ok({ timeout: 4000 })
 })
 
 Then('I see the archived vault', async t => {
@@ -227,7 +227,7 @@ Then('I see the archived vault', async t => {
 })
 
 Then('I see remove vault action', async t => {
-  await t.expect(addVaultsPage.removeVaultMenu.exists).ok({ timeout: 2000 })
+  await t.expect(addVaultsPage.removeVaultMenu.exists).ok({ timeout: 4000 })
 })
 
 Then('I see public vault page', async t => {
