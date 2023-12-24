@@ -1,7 +1,7 @@
 import { getEnvironment } from '../helper/environment.helper'
 import { Selector } from 'testcafe'
 
-const examplePublicFileUri = 'public/vaults/active/26470a32-888b-4c6d-86bb-89395a8de177/gallery'
+const examplePublicFileUri = 'public/vaults/active/NaAZoPgidQGmi8bNZiY3EEq6bCwKhgH3MsvHYQXJHdo/gallery'
 const examplePublicFileName = 'akord.png'
 
 export class GalleryPage {
