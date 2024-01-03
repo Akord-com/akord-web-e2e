@@ -124,6 +124,7 @@ When('I click on vault menu', async t => {
 
 When('I click on archive the vault', async t => {
   await clickArchive(t)
+  await t.wait(3000)
 })
 
 When('I click on remove the vault', async t => {
@@ -132,6 +133,7 @@ When('I click on remove the vault', async t => {
 
 When('I click on archive vault button', async t => {
   await clickConfirmArchive(t)
+  await t.wait(4000)
 })
 
 When('I click on remove vault button', async t => {
@@ -222,7 +224,9 @@ Then('I see the confirm remove dialog', async t => {
 
 Then('I see the archived vault', async t => {
   await openVaultsPage(t)
+  await t.wait(3000)
   await clickArchived(t)
+  await t.wait(3000)
   await t.expect((await findTestVault()).exists).ok({ timeout: 5000 })
 })
 
