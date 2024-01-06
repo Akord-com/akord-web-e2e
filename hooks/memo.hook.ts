@@ -69,6 +69,7 @@ export async function clickCreateVaultButton(t: TestController) {
 }
 
 export async function clickVaultName(t: TestController) {
+  await t.wait(3000);
   await t.click(vaultsPage.findRow(TEST_VAULT_NAME));
 }
 
