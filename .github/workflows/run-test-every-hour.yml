@@ -83,6 +83,8 @@ jobs:
     steps:
       - name: Check status
         id: check-status
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           recent_status=$(gh run list --limit 1 --json status -q ".[0].status")
           echo "recent_status::${recent_status}"
