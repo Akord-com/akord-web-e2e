@@ -81,6 +81,8 @@ jobs:
     if: ${{ success() }}
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Check status
         id: check-status
         env:
