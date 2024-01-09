@@ -28,6 +28,8 @@
     "@cucumber/cucumber": "^9.1.0",
     "@cucumber/cucumber-expressions": "^16.0.0",
     "gherkin-testcafe": "^7.1.2",
+    "mailslurp": "^0.0.1-security",
+    "mailslurp-client": "^15.17.4",
     "testcafe": "3.2.0",
     "typescript": "^5.3.3"
   }

@@ -1,4 +1,3 @@
-@only
 @login_keep_me_signed_in
 Feature: Vault create and remove
 
