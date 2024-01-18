@@ -101,4 +101,3 @@ jobs:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           content: |
             Back to normal! Thanks for fixing :metal:
-            ${{ needs.e2e-tests.outputs.outputreport }}
