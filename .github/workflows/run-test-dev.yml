@@ -1,4 +1,4 @@
-name: Run tests every hour
+name: Run tests against dev
 on:
   workflow_dispatch:
   schedule:
@@ -73,7 +73,7 @@ jobs:
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           content: |
-            Tests failed :broken_heart:
+            [dev] Tests failed :broken_heart:
             ${{ needs.e2e-tests.outputs.outputreport }}
 
   back-to-normal:
