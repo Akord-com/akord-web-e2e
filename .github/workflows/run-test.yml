@@ -36,16 +36,18 @@ jobs:
       - name: Set env
         # if: !github.event.inputs.env
         run: |
-          if [[ "${{ !github.event.inputs.env }}" ]]
-            if [[ "${{ github.event.schedule }}" == "0 0 * * *" ]]
+          if [[ "${{ github.event.inputs.env }}" == "false" ]]; then
+            if [[ "${{ github.event.schedule }}" == "0 0 * * *" ]]; then
               echo "Setting E2E_URL to v2 url"
               echo "E2E_URL=https://v2.akord.com" >> "$GITHUB_ENV"
             else
               echo "Setting E2E_URL to dev url"
               echo "E2E_URL=https://dev.akord.link" >> "$GITHUB_ENV"
+            fi
           else
               echo "Setting E2E_URL to ${{ github.event.inputs.env }}"
               echo "E2E_URL=${{ github.event.inputs.env }}" >> "$GITHUB_ENV"
+          fi
 
       - name: Install dependencies
         run: npm install
