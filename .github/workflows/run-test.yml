@@ -1,8 +1,18 @@
-name: Run tests every hour
+name: Run tests against dev
 on:
   workflow_dispatch:
+    inputs:
+      env:
+        type: choice
+        description: 'Test Env'     
+        required: true
+        options:
+          - https://dev.akord.link
+          - https://v2.akord.com
+        default: https://dev.akord.link
   schedule:
   - cron: "0 */4 * * *"
+  - cron: "0 0 * * *"
 
 jobs:
   e2e-tests:
@@ -15,8 +25,6 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         node: [14]
-    env:
-      E2E_URL: 'https://dev.akord.link'
     steps:
       - uses: browser-actions/setup-chrome@v1
         with:
@@ -25,6 +33,20 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - uses: actions/checkout@v2
+      - name: Set env
+        # if: !github.event.inputs.env
+        run: |
+          if [[ "${{ !github.event.inputs.env }}" ]]
+            if [[ "${{ github.event.schedule }}" == "0 0 * * *" ]]
+              echo "Setting E2E_URL to v2 url"
+              echo "E2E_URL=https://v2.akord.com" >> "$GITHUB_ENV"
+            else
+              echo "Setting E2E_URL to dev url"
+              echo "E2E_URL=https://dev.akord.link" >> "$GITHUB_ENV"
+          else
+              echo "Setting E2E_URL to ${{ github.event.inputs.env }}"
+              echo "E2E_URL=${{ github.event.inputs.env }}" >> "$GITHUB_ENV"
+
       - name: Install dependencies
         run: npm install
       - name: Run TestCafe
@@ -73,7 +95,7 @@ jobs:
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           content: |
-            Tests failed :broken_heart:
+            Tests failed :broken_heart: [${{ env.E2E_URL }}]
             ${{ needs.e2e-tests.outputs.outputreport }}
 
   back-to-normal:
