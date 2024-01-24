@@ -21,7 +21,7 @@ jobs:
     outputs:
       outputreport: ${{ steps.testreport.outputs.report }}
       status: ${{ steps.testreport.outputs.status}}
-      env_var: ${{ steps.set_env.outputs.env_var }}
+      env_var: ${{ steps.set_env.outputs.E2E_URL }}
     strategy:
       matrix:
         os: [ubuntu-latest]
