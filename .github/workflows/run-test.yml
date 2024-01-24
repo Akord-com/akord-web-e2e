@@ -38,7 +38,7 @@ jobs:
         id: set_env
         # if: !github.event.inputs.env
         run: |
-          if [[ "${{ github.event.inputs.env }}" == "false" ]]; then
+          if [[ "${{ github.event.inputs.env }}" == "" ]]; then
             if [[ "${{ github.event.schedule }}" == "0 0 * * *" ]]; then
               echo "Setting E2E_URL to v2 url"
               echo "E2E_URL=https://v2.akord.com" >> "$GITHUB_ENV"
