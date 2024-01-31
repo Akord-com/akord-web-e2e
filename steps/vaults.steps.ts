@@ -138,6 +138,7 @@ When('I click on archive vault button', async t => {
 
 When('I click on remove vault button', async t => {
   await clickConfirmRemove(t)
+  await t.wait(4000)
 })
 
 When('I refresh the page', async t => {
