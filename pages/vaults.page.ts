@@ -14,6 +14,7 @@ export class VaultsPage {
   row: Selector
   active: Selector
   archived: Selector
+  account: Selector
 
   constructor() {
     this.host = getEnvironment().url.hostname
@@ -28,6 +29,7 @@ export class VaultsPage {
     this.row = Selector('table > tbody > tr')
     this.active = Selector('span').withExactText('Active')
     this.archived = Selector('#room-tab-1').withExactText('Archived')
+    this.account = Selector('span').withExactText('Account')
   }
 
   findRow(id: string): Selector {

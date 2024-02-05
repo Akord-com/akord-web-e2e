@@ -23,7 +23,7 @@ import {
   clickUpload,
   findUploadedFile,
   clickVaultMenu
-} from '../hooks/memo.hook'
+} from '../hooks/vault.hook'
 import { VaultsPage } from '../pages/vaults.page'
 import { AddVaultPage } from '../pages/add-vault.page'
 import { VaultPage } from '../pages/vault.page'
