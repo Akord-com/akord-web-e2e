@@ -1,8 +1,8 @@
 import { getEnvironment } from '../helper/environment.helper'
 import { Selector } from 'testcafe'
 
-const examplePublicVaultUri = 'public/vaults/active/8f2a6919-9a9a-4c08-8d69-0195e6a80ab5/assets'
-const examplePublicVaultName = "me too.. dont't delete us!"
+const examplePublicVaultUri = 'public/vaults/active/oB-EJlkSippWrF0fkf6s24mHlbw9Lx5TvvFKugVJQmA/assets'
+const examplePublicVaultName = "Please don't delete me this time!"
 
 export class VaultPage {
   host: string

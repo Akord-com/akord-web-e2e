@@ -1,7 +1,7 @@
 @only
 Feature: Sign up and delete account
 
-  Scenario: Sign up
+  Scenario: Sign up and delete account
     Given I see the signup page
     When I fill in the sign up form with valid user data
     And I tick the terms and conditions checkbox

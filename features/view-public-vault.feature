@@ -1,3 +1,4 @@
+@only
 Feature: Public vault view
   
   Scenario: Show public vault
