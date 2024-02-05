@@ -1,4 +1,4 @@
-# akord-web-e2e [![Run tests every hour](https://github.com/Akord-com/akord-web-e2e/actions/workflows/run-test-every-hour.yml/badge.svg?event=schedule)](https://github.com/Akord-com/akord-web-e2e/actions/workflows/run-test-every-hour.yml)
+# akord-web-e2e [![Run tests every hour](https://github.com/Akord-com/akord-web-e2e/actions/workflows/run-test-every-hour.yml/badge.svg?event=schedule)](https://github.com/Akord-com/akord-web-e2e/actions/workflows/run-test.yml)
 E2e test set for akord.com
 
 
