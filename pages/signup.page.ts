@@ -16,7 +16,7 @@ export class SignupPage {
     this.nextButton = Selector('button').withText('Next');
     this.termsCheckbox = Selector('span').withText('I have read and agree to the');
     this.withdrawalCheckbox = Selector('span').withText('By creating your Account, you agree to waive your');
-    this.username = '#email-input'
-    this.password = '#password-input'
+    this.username = '#enter-email'
+    this.password = '#enter-password'
   }
 }
