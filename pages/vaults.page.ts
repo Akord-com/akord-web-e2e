@@ -13,7 +13,7 @@ export class VaultsPage {
   table: Selector
   row: Selector
   active: Selector
-  archived: Selector
+  inactive: Selector
   account: Selector
 
   constructor() {
@@ -28,7 +28,7 @@ export class VaultsPage {
     this.table = Selector('table')
     this.row = Selector('table > tbody > tr')
     this.active = Selector('span').withExactText('Active')
-    this.archived = Selector('#room-tab-1').withExactText('Archived')
+    this.inactive = Selector('#room-tab-1').withExactText('Inactive')
     this.account = Selector('span').withExactText('Account')
   }
 

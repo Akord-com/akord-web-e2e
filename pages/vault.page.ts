@@ -7,7 +7,7 @@ const examplePublicVaultName = "Please don't delete me this time!"
 export class VaultPage {
   host: string
   url: string
-  urlArchived: string
+  urlInactiveVaults: string
   examplePublicVaultUrl: string
   examplePublicVaultName: Selector
   created: Selector
@@ -17,11 +17,11 @@ export class VaultPage {
   menuButton: Selector
   menuHeaderButton: Selector
   menu: Selector
-  archive: Selector
+  deactivate: Selector
   remove: Selector
-  archiveVaultModal: Selector
+  deactivateVaultModal: Selector
   removeVaultModal: Selector
-  archiveVaultButton: Selector
+  deactivateVaultButton: Selector
   removeVaultButton: Selector
   activityTimeline: Selector
   documents: Selector
@@ -34,7 +34,7 @@ export class VaultPage {
   constructor() {
     this.host = getEnvironment().url.hostname
     this.url = `${getEnvironment().url.href}`
-    this.urlArchived = `${getEnvironment().url.href}vaults/archived`
+    this.urlInactiveVaults = `${getEnvironment().url.href}vaults/inactive`
     this.examplePublicVaultUrl = `${getEnvironment().url.href}${examplePublicVaultUri}`
     this.examplePublicVaultName = Selector('h2')
       .withText(examplePublicVaultName)
@@ -54,16 +54,16 @@ export class VaultPage {
       'display more actions'
     ).nth(0)
     this.menu = Selector('ul').withAttribute('role', 'menu')
-    this.archive = Selector('p').withText('Archive vault')
+    this.deactivate = Selector('p').withText('Deactivate vault')
     this.remove = Selector('p').withText('Remove vault')
     this.activityTimeline = Selector('span').withText('Activity timeline')
     this.documents = Selector('span').withText('Documents')
-    this.archiveVaultModal = Selector('h2')
-      .withText('Archive vault')
+    this.deactivateVaultModal = Selector('h2')
+      .withText('Deactivate vault')
     this.removeVaultModal = Selector('h2')
       .withText('Remove vault')
-    this.archiveVaultButton = Selector('button')
-      .withText('Archive vault')
+    this.deactivateVaultButton = Selector('button')
+      .withText('Deactivate vault')
     this.removeVaultButton = Selector('button')
       .withText('Remove vault')
     this.addFileHeader = Selector('h1')

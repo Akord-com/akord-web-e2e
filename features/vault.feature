@@ -19,16 +19,16 @@ Feature: Vault create and remove
     And I see new vault created
     When I click on the vault
     And I click on vault menu
-    Then I see archive vault action
-    When I click on archive the vault
-    Then I see the confirm archive dialog
-    When I click on archive vault button
-    Then I see the archived vault
+    Then I see deactivate vault action
+    When I click on deactivate the vault
+    Then I see the confirm deactivate dialog
+    When I click on deactivate vault button
+    Then I see the deactivated vault
     When I click on the vault
     And I click on menu
     Then I see remove vault action
     When I click on remove the vault
     Then I see the confirm remove dialog
     When I click on remove vault button
-    And I open the vault archived page
+    And I open the vault inactive page
     Then I do not see the vault anymore

@@ -28,10 +28,10 @@ After('@vault', async (t) => {
   await openVaultsPage(t)
   await clickVaultName(t);
   await clickVaultMenu(t);
-  await clickArchive(t);
-  await clickConfirmArchive(t);
+  await clickDeactivate(t);
+  await clickConfirmDeactivate(t);
   await openVaultsPage(t)
-  await clickArchived(t);
+  await clickInactiveVaultsPage(t);
   await clickMenu(t);
   await clickRemove(t);
   await clickConfirmRemove(t);
@@ -56,8 +56,8 @@ export async function fillVaultTags(t: TestController) {
     .typeText(addVaultPage.vaultTags, 'test-tag,', { paste: false })
 }
 
-export async function clickArchived(t: TestController) {
-  await t.click(vaultsPage.archived);
+export async function clickInactiveVaultsPage(t: TestController) {
+  await t.click(vaultsPage.inactive);
 }
 
 export async function clickAddVaultButton(t: TestController) {
@@ -81,8 +81,8 @@ export async function clickMenu(t: TestController) {
   await t.click(vaultPage.menuButton);
 }
 
-export async function clickArchive(t: TestController) {
-  await t.click(vaultPage.archive);
+export async function clickDeactivate(t: TestController) {
+  await t.click(vaultPage.deactivate);
 }
 
 export async function clickUpload(t: TestController) {
@@ -127,8 +127,8 @@ export async function findTestMessagePosted(t: TestController) {
   return vaultPage.findMessagePosted(TEST_MESSAGE)
 }
 
-export async function clickConfirmArchive(t: TestController) {
-  await t.click(vaultPage.archiveVaultButton);
+export async function clickConfirmDeactivate(t: TestController) {
+  await t.click(vaultPage.deactivateVaultButton);
 }
 
 export async function clickConfirmRemove(t: TestController) {

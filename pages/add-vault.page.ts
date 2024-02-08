@@ -23,7 +23,7 @@ export class AddVaultPage {
   createVaultButton: Selector
   table: Selector
   row: Selector
-  archiveVaultMenu: Selector
+  deactivateVaultMenu: Selector
   removeVaultMenu: Selector
 
   constructor() {
@@ -45,7 +45,7 @@ export class AddVaultPage {
     this.vaultDescription = '#enter-description'
     this.vaultTags = '#tags-input'
     this.createVaultButton = Selector('button').withText('Create vault')
-    this.archiveVaultMenu = Selector('p').withText('Archive vault')
+    this.deactivateVaultMenu = Selector('p').withText('Deactivate vault')
     this.removeVaultMenu = Selector('p').withText('Remove vault')
     this.allClearPage = Selector('h1').withText('All clear')
   }
