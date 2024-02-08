@@ -9,10 +9,10 @@ import {
   postTestMessage,
   findTestMessagePosted,
   clickMenu,
-  clickArchive,
-  clickConfirmArchive,
+  clickDeactivate,
+  clickConfirmDeactivate,
   openVaultsPage,
-  clickArchived,
+  clickInactiveVaultsPage,
   clickNext,
   clickCloudStorage,
   clickPrivateVault,
@@ -43,8 +43,8 @@ Given('I open public vault page', async t => {
   await t.navigateTo(vaultPage.examplePublicVaultUrl);
 })
 
-Given('I open the vault archived page', async t => {
-  await t.navigateTo(vaultPage.urlArchived);
+Given('I open the vault inactive page', async t => {
+  await t.navigateTo(vaultPage.urlInactiveVaults);
 })
 
 Then('I see create the first vault page', async t => {
@@ -122,8 +122,8 @@ When('I click on vault menu', async t => {
   await clickVaultMenu(t)
 })
 
-When('I click on archive the vault', async t => {
-  await clickArchive(t)
+When('I click on deactivate the vault', async t => {
+  await clickDeactivate(t)
   await t.wait(3000)
 })
 
@@ -131,8 +131,8 @@ When('I click on remove the vault', async t => {
   await clickRemove(t)
 })
 
-When('I click on archive vault button', async t => {
-  await clickConfirmArchive(t)
+When('I click on deactivate vault button', async t => {
+  await clickConfirmDeactivate(t)
   await t.wait(4000)
 })
 
@@ -146,8 +146,8 @@ When('I refresh the page', async t => {
   await t.wait(4000)
 })
 
-Then('I see archive vault action', async t => {
-  await t.expect(addVaultsPage.archiveVaultMenu.exists).ok({ timeout: 4000 })
+Then('I see deactivate vault action', async t => {
+  await t.expect(addVaultsPage.deactivateVaultMenu.exists).ok({ timeout: 4000 })
 })
 
 When('I open the page in new window', async t => {
@@ -215,18 +215,18 @@ Then('I see the menu', async t => {
   await t.expect(vaultPage.menu.exists).ok()
 })
 
-Then('I see the confirm archive dialog', async t => {
-  await t.expect(vaultPage.archiveVaultModal.exists).ok({ timeout: 4000 })
+Then('I see the confirm deactivate dialog', async t => {
+  await t.expect(vaultPage.deactivateVaultModal.exists).ok({ timeout: 4000 })
 })
 
 Then('I see the confirm remove dialog', async t => {
   await t.expect(vaultPage.removeVaultModal.exists).ok({ timeout: 4000 })
 })
 
-Then('I see the archived vault', async t => {
+Then('I see the deactivated vault', async t => {
   await openVaultsPage(t)
   await t.wait(3000)
-  await clickArchived(t)
+  await clickInactiveVaultsPage(t)
   await t.wait(3000)
   await t.expect((await findTestVault()).exists).ok({ timeout: 5000 })
 })
