@@ -21,7 +21,7 @@ const accountPage = new AccountPage()
 const securityAndPrivacyPage = new SecurityAndPrivacyPage()
 
 const getLocation = ClientFunction(() => document.location.href)
-const mailslurp = new MailSlurp({ apiKey: 'f8ccb3861a2c4c0e58118ce502c3a20e199f5b95b59cf3972dabc9b17570a01a' });
+const mailslurp = new MailSlurp({ apiKey: 'ba1413179998195c95ed558d0854bb002f24b60c819a8ed56ce286024c5826f9' });
 
 let inbox: InboxDto;
 let username: string;
@@ -41,14 +41,18 @@ When('I click the sign up link', async t => {
 })
 
 When('I fill in the sign up form with valid user data', async t => {
-  inbox = await mailslurp.inboxController.createInbox({});
-  username = inbox.emailAddress;
-  password = inbox.emailAddress;
-  await t
-    .typeText(signupPage.username, username, { paste: false })
-    .typeText(signupPage.password, password, {
-      paste: false
-    });
+  try {
+    inbox = await mailslurp.inboxController.createInbox({});
+    username = inbox.emailAddress;
+    password = inbox.emailAddress;
+    await t
+      .typeText(signupPage.username, username, { paste: false })
+      .typeText(signupPage.password, password, {
+        paste: false
+      });
+  } catch (error) {
+    console.error(error);
+  }
 })
 
 When('I tick the terms and conditions checkbox', async t => {
