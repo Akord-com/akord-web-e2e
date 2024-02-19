@@ -1,5 +1,7 @@
 [dev] [![Run DEV E2E Tests](https://github.com/Akord-com/akord-web-e2e/actions/workflows/run-dev-test.yml/badge.svg)](https://github.com/Akord-com/akord-web-e2e/actions/workflows/run-dev-test.yml)
+
 [prod] [![Run V2 E2E Tests](https://github.com/Akord-com/akord-web-e2e/actions/workflows/run-v2-test.yml/badge.svg)](https://github.com/Akord-com/akord-web-e2e/actions/workflows/run-v2-test.yml)
+
 # akord-web-e2e
 E2e test set for akord.com
 
