@@ -1,3 +1,4 @@
+@dev @prod
 Feature: Login
 
   Scenario: Successful Login

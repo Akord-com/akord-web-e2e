@@ -1,3 +1,4 @@
+@dev @prod
 Feature: Redirect to storage page
   
   Scenario: Redirect to internal page after login

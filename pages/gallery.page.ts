@@ -1,7 +1,8 @@
 import { getEnvironment } from '../helper/environment.helper'
 import { Selector } from 'testcafe'
 
-const examplePublicFileUri = 'public/vaults/active/oB-EJlkSippWrF0fkf6s24mHlbw9Lx5TvvFKugVJQmA/gallery'
+const uriId = (getEnvironment().url.href === 'https://dev.akord.link') ? getEnvironment().examplePublicFileUriIdDev : getEnvironment().examplePublicFileUriIdProd 
+const examplePublicFileUri = `public/vaults/active/${uriId}/gallery`
 const examplePublicFileName = 'akord.png'
 
 export class GalleryPage {

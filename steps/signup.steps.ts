@@ -11,6 +11,7 @@ import { SignupVerifyPage } from '../pages/signup-verify.page';
 import { SignupSuccessPage } from '../pages/signup-success.page';
 import { AccountPage } from '../pages/account.page';
 import { SecurityAndPrivacyPage } from '../pages/security-and-privacy.page';
+import { getEnvironment } from 'helper/environment.helper';
 
 const loginPage = new LoginPage()
 const signupPage = new SignupPage()
@@ -21,7 +22,7 @@ const accountPage = new AccountPage()
 const securityAndPrivacyPage = new SecurityAndPrivacyPage()
 
 const getLocation = ClientFunction(() => document.location.href)
-const mailslurp = new MailSlurp({ apiKey: 'ba1413179998195c95ed558d0854bb002f24b60c819a8ed56ce286024c5826f9' });
+const mailslurp = new MailSlurp({ apiKey: getEnvironment().mailSlurpToken });
 
 let inbox: InboxDto;
 let username: string;
@@ -45,6 +46,7 @@ When('I fill in the sign up form with valid user data', async t => {
     inbox = await mailslurp.inboxController.createInbox({});
     username = inbox.emailAddress;
     password = inbox.emailAddress;
+    console.log(`Username: ${username}, password: ${password}`)
     await t
       .typeText(signupPage.username, username, { paste: false })
       .typeText(signupPage.password, password, {

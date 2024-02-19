@@ -1,4 +1,4 @@
-@login_keep_me_signed_in
+@login_keep_me_signed_in @prod @dev
 Feature: Vault create and remove
 
   Scenario: Create & Remove Vault

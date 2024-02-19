@@ -1,3 +1,4 @@
+@dev @prod
 Feature: Keep me signed in
 
   @login
