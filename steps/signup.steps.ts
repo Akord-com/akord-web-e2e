@@ -11,7 +11,7 @@ import { SignupVerifyPage } from '../pages/signup-verify.page';
 import { SignupSuccessPage } from '../pages/signup-success.page';
 import { AccountPage } from '../pages/account.page';
 import { SecurityAndPrivacyPage } from '../pages/security-and-privacy.page';
-import { getEnvironment } from 'helper/environment.helper';
+import { getEnvironment } from '../helper/environment.helper';
 
 const loginPage = new LoginPage()
 const signupPage = new SignupPage()
