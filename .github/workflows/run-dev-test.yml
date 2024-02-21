@@ -101,8 +101,16 @@ jobs:
           WORKFLOW_ID="79130345"
           TOKEN=${{ secrets.GITHUB_TOKEN }}
 
+          
+          response=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                        "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/runs?event=workflow_run&workflow=Run%20V2%20E2E%20Tests")
+
+          previous_run_id=$(echo "$response" | jq -r '.workflow_runs[1].id')
+
+          echo $previous_run
+
           recent_status=$(curl -s -H "Authorization: Bearer $TOKEN" \
-            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/$WORKFLOW_ID/runs?status=completed&per_page=1&page=1" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/$previous_run_id/runs?status=completed&per_page=1&page=1" \
             | jq -r '.workflow_runs[0].conclusion')
           
           echo "$recent_status"
@@ -113,4 +121,4 @@ jobs:
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           content: |
-            Back to normal! Thanks for fixing :metal:
+            Back to normal! Thanks for fixing :metal: [${{ needs.e2e-tests.outputs.env_var }}]
