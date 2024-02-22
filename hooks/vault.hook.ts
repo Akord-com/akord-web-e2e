@@ -8,10 +8,11 @@ const vaultPage = new VaultPage();
 const addVaultPage = new AddVaultPage();
 const TEST_VAULT_NAME = Math.random().toString(36).substr(2, 10);
 const TEST_UPLOAD_FILE = "akord.png"
+const TEST_UPLOAD_FILE_DUPLICATE = "akord copy.png"
 const TEST_MESSAGE = 'test message'
 
 
-Before('@vault', async (t) => {
+Before('@vault_on', async (t) => {
   await openVaultsPage(t)
   await clickAddVaultButton(t)
   await clickCloudStorage(t);
@@ -24,7 +25,7 @@ Before('@vault', async (t) => {
   await clickCreateVaultButton(t)
 });
 
-After('@vault', async (t) => {
+After('@vault_off', async (t) => {
   await openVaultsPage(t)
   await clickVaultName(t);
   await clickVaultMenu(t);
@@ -70,7 +71,7 @@ export async function clickCreateVaultButton(t: TestController) {
 
 export async function clickVaultName(t: TestController) {
   await t.wait(3000);
-  await t.click(vaultsPage.findRow(TEST_VAULT_NAME));
+  await t.click(vaultsPage.findVault(TEST_VAULT_NAME));
 }
 
 export async function clickVaultMenu(t: TestController) {
@@ -116,11 +117,19 @@ export async function postTestMessage(t: TestController) {
 }
 
 export async function findTestVault() {
-  return vaultsPage.findRow(TEST_VAULT_NAME);
+  return vaultsPage.findVault(TEST_VAULT_NAME);
 }
 
 export async function findUploadedFile() {
-  return vaultsPage.findRow(TEST_UPLOAD_FILE);
+  return vaultsPage.findVault(TEST_UPLOAD_FILE);
+}
+
+export async function findUploadedFileDuplicate() {
+  return vaultsPage.findVault(TEST_UPLOAD_FILE_DUPLICATE);
+}
+
+export async function findFileWithTwoVersions() {
+  return vaultsPage.findStackByVersionsNumber("2");
 }
 
 export async function findTestMessagePosted(t: TestController) {
