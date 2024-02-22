@@ -22,7 +22,9 @@ import {
   clickConfirmRemove,
   clickUpload,
   findUploadedFile,
-  clickVaultMenu
+  clickVaultMenu,
+  findUploadedFileDuplicate,
+  findFileWithTwoVersions
 } from '../hooks/vault.hook'
 import { VaultsPage } from '../pages/vaults.page'
 import { AddVaultPage } from '../pages/add-vault.page'
@@ -67,6 +69,7 @@ When('I click on create vault button', async t => {
 
 When('I click on the vault', async t => {
   await clickVaultName(t)
+  await t.wait(5000)
 })
 
 When('I select cloud storage', async t => {
@@ -77,7 +80,19 @@ Then('I see add file page', async t => {
   await t.expect(vaultPage.addFileHeader.exists).ok()
 })
 
-Then('I see upload encrypted files', async t => {
+Then('I see file already exits modal', async t => {
+  await t.expect(vaultPage.fileAlreadyExistsHeader.exists).ok()
+})
+
+When('I click on keep both', async t => {
+  await t.click(vaultPage.keepBoth);
+})
+
+When('I click on replace', async t => {
+  await t.click(vaultPage.replace);
+})
+
+Then('I see upload encrypted files modal', async t => {
   await t.expect(vaultPage.uploadEncryptedFilesHeader.exists).ok({ timeout: 4000 })
 })
 
@@ -197,7 +212,15 @@ Then('I see new vault created', async t => {
 })
 
 Then('I see uploaded file', async t => {
-  await t.expect((await findUploadedFile()).exists).ok({ timeout: 4000 })
+  await t.expect((await findUploadedFile()).exists).ok({ timeout: 5000 })
+})
+
+Then('I see uploaded file duplicate', async t => {
+  await t.expect((await findUploadedFileDuplicate()).exists).ok({ timeout: 5000 })
+})
+
+Then('I see uploaded file with two versions', async t => {
+  await t.expect((await findFileWithTwoVersions()).exists).ok({ timeout: 5000 })
 })
 
 Then('I see vault page', async t => {

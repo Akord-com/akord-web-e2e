@@ -29,9 +29,12 @@ export class VaultPage {
   documents: Selector
   addFileHeader: Selector
   uploadEncryptedFilesHeader: Selector
+  fileAlreadyExistsHeader: Selector
   inputUploadFile: Selector
   uploadFile: Selector
   upload: Selector
+  keepBoth: Selector
+  replace: Selector
 
   constructor() {
     this.host = getEnvironment().url.hostname
@@ -76,6 +79,9 @@ export class VaultPage {
       .withText('Upload')
     this.uploadEncryptedFilesHeader = Selector('p').withText('Upload encrypted files')
     this.inputUploadFile = Selector('#contained-button-file')
+    this.fileAlreadyExistsHeader = Selector('p').withText('File already exists')
+    this.keepBoth = Selector('button').withText('Keep both')
+    this.replace = Selector('button').withText('Replace')
   }
 
   findMessagePosted(message: string): Selector {
