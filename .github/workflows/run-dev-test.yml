@@ -101,10 +101,10 @@ jobs:
           TOKEN=${{ secrets.GITHUB_TOKEN }}
           
           response=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-                        "https://api.github.com/repos/${{ github.repository }}/actions/runs?workflow=Run%20DEV%20E2E%20Tests")
+                        "https://api.github.com/repos/${{ github.repository }}/actions/runs")
 
-          previous_run_id=$(echo "$response" | jq -r '.workflow_runs[1].id')
-          previous_run_conclusion=$(echo "$response" | jq -r '.workflow_runs[1].conclusion')
+          previous_run_id=$(echo "$response" | jq -r '.workflow_runs | map(select(.name == "Run DEV E2E Tests")) | first | .id')
+          previous_run_conclusion=$(echo "$response" | jq -r '.workflow_runs | map(select(.name == "Run DEV E2E Tests")) | first | .conclusion')
 
           echo "Previous run $previous_run_id concluded with: $previous_run_conclusion"
           echo "recent_status=$previous_run_conclusion" >> $GITHUB_OUTPUT
