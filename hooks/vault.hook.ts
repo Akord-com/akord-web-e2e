@@ -69,9 +69,9 @@ export async function clickCreateVaultButton(t: TestController) {
   await t.click(vaultsPage.createVaultButton);
 }
 
-export async function clickVaultName(t: TestController) {
+export async function clickVaultName(t: TestController, name?: string) {
   await t.wait(3000);
-  await t.click(vaultsPage.findVault(TEST_VAULT_NAME));
+  await t.click(vaultsPage.findVault(name || TEST_VAULT_NAME));
 }
 
 export async function clickVaultMenu(t: TestController) {
@@ -84,6 +84,10 @@ export async function clickMenu(t: TestController) {
 
 export async function clickDeactivate(t: TestController) {
   await t.click(vaultPage.deactivate);
+}
+
+export async function clickInvite(t: TestController) {
+  await t.click(vaultPage.invite);
 }
 
 export async function clickUpload(t: TestController) {
