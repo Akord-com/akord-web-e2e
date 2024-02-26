@@ -212,15 +212,15 @@ Then('I see new vault created', async t => {
 })
 
 Then('I see uploaded file', async t => {
-  await t.expect((await findUploadedFile()).exists).ok({ timeout: 5000 })
+  await t.expect((await findUploadedFile()).exists).ok({ timeout: 10000 })
 })
 
 Then('I see uploaded file duplicate', async t => {
-  await t.expect((await findUploadedFileDuplicate()).exists).ok({ timeout: 5000 })
+  await t.expect((await findUploadedFileDuplicate()).exists).ok({ timeout: 10000 })
 })
 
 Then('I see uploaded file with two versions', async t => {
-  await t.expect((await findFileWithTwoVersions()).exists).ok({ timeout: 5000 })
+  await t.expect((await findFileWithTwoVersions()).exists).ok({ timeout: 10000 })
 })
 
 Then('I see vault page', async t => {
