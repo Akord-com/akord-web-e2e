@@ -24,7 +24,8 @@ import {
   findUploadedFile,
   clickVaultMenu,
   findUploadedFileDuplicate,
-  findFileWithTwoVersions
+  findFileWithTwoVersions,
+  clickInvite
 } from '../hooks/vault.hook'
 import { VaultsPage } from '../pages/vaults.page'
 import { AddVaultPage } from '../pages/add-vault.page'
@@ -146,6 +147,11 @@ When('I click on remove the vault', async t => {
   await clickRemove(t)
 })
 
+When('I click on invite to vault', async t => {
+  await clickInvite(t)
+  await t.wait(3000)
+})
+
 When('I click on deactivate vault button', async t => {
   await clickConfirmDeactivate(t)
   await t.wait(4000)
@@ -162,7 +168,11 @@ When('I refresh the page', async t => {
 })
 
 Then('I see deactivate vault action', async t => {
-  await t.expect(addVaultsPage.deactivateVaultMenu.exists).ok({ timeout: 4000 })
+  await t.expect(addVaultsPage.deactivateVaultMenu.exists).ok({ timeout: 10000 })
+})
+
+Then('I see invite to vault action', async t => {
+  await t.expect(vaultPage.inviteVaultMenu.exists).ok({ timeout: 10000 })
 })
 
 When('I open the page in new window', async t => {

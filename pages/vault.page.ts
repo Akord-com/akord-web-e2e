@@ -21,6 +21,8 @@ export class VaultPage {
   menu: Selector
   deactivate: Selector
   remove: Selector
+  invite: Selector
+  manageAccess: Selector
   deactivateVaultModal: Selector
   removeVaultModal: Selector
   deactivateVaultButton: Selector
@@ -35,6 +37,7 @@ export class VaultPage {
   upload: Selector
   keepBoth: Selector
   replace: Selector
+  inviteVaultMenu: Selector
 
   constructor() {
     this.host = getEnvironment().url.hostname
@@ -61,6 +64,8 @@ export class VaultPage {
     this.menu = Selector('ul').withAttribute('role', 'menu')
     this.deactivate = Selector('p').withText('Deactivate vault')
     this.remove = Selector('p').withText('Remove vault')
+    this.invite = Selector('p').withText('Invite')
+    this.manageAccess = Selector('p').withText('Manage access')
     this.activityTimeline = Selector('span').withText('Activity timeline')
     this.documents = Selector('span').withText('Documents')
     this.deactivateVaultModal = Selector('h2')
@@ -82,6 +87,7 @@ export class VaultPage {
     this.fileAlreadyExistsHeader = Selector('p').withText('File already exists')
     this.keepBoth = Selector('button').withText('Keep both')
     this.replace = Selector('button').withText('Replace')
+    this.inviteVaultMenu = Selector('p').withText('Invite')
   }
 
   findMessagePosted(message: string): Selector {
