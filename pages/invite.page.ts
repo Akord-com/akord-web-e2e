@@ -25,11 +25,10 @@ export class InvitePage {
     this.expirationDate = '#expiration-date'
     this.generatedLink = '#text'
     this.generatedLinkSelector = Selector('p').withText('vaults/active')
-    this.selectExpirationDate = Selector('#main > div > div > div.MuiBox-root.css-7z1gus > div > div > div.MuiBox-root.css-7elqso > div.MuiBox-root.css-178yklu > div > div > div > div > div > button > svg')
+    this.selectExpirationDate = Selector(this.expirationDate)
 
     this.inviteButton = Selector('button').withText('Invite to vault')
     this.generateLinkButton = Selector('button').withText('Generate link')
-    this.selectAirdropAccess = Selector('#main > div > div > div.MuiBox-root.css-7z1gus > div > div > div.MuiBox-root.css-7elqso > div.MuiBox-root.css-uewl2b > label')
+    this.selectAirdropAccess = Selector("input[name='airdropChecked']")
   }
-
 }

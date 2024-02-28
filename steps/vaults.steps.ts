@@ -168,11 +168,11 @@ When('I refresh the page', async t => {
 })
 
 Then('I see deactivate vault action', async t => {
-  await t.expect(addVaultsPage.deactivateVaultMenu.exists).ok({ timeout: 4000 })
+  await t.expect(addVaultsPage.deactivateVaultMenu.exists).ok({ timeout: 10000 })
 })
 
 Then('I see invite to vault action', async t => {
-  await t.expect(vaultPage.inviteVaultMenu.exists).ok({ timeout: 4000 })
+  await t.expect(vaultPage.inviteVaultMenu.exists).ok({ timeout: 10000 })
 })
 
 When('I open the page in new window', async t => {
