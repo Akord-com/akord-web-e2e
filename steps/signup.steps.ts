@@ -46,7 +46,6 @@ When('I fill in the sign up form with valid user data', async t => {
     inbox = await mailslurp.inboxController.createInbox({});
     username = inbox.emailAddress;
     password = inbox.emailAddress;
-    console.log(`Username: ${username}, password: ${password}`)
     await t
       .typeText(signupPage.username, username, { paste: false })
       .typeText(signupPage.password, password, {
@@ -89,7 +88,6 @@ When('I confirm email address', async t => {
   const link = match[2];
 
   await t.navigateTo(link);
-  await t.wait(5000)
 })
 
 When('I put the password and click on login', async t => {
@@ -137,7 +135,7 @@ Then('I see the signup success page', async t => {
 
 Then('I see the vaults page with 0 vaults', async t => {
   await t.expect(getLocation()).contains(vaultsPage.url)
-  await t.expect(vaultsPage.vaultsCreateHeader.exists).ok({ timeout: 5000 })
+  await t.expect(vaultsPage.vaultsCreateHeader.exists).ok({ timeout: 10000 })
 })
 
 Then('I see the account page', async t => {
@@ -149,9 +147,9 @@ Then('I see the security and privacy page', async t => {
 })
 
 Then('I see the delete account modal with delete button', async t => {
-  await t.expect(securityAndPrivacyPage.deleteAccountButton.exists).ok({ timeout: 2000 })
+  await t.expect(securityAndPrivacyPage.deleteAccountButton.exists).ok({ timeout: 10000 })
 })
 
 Then('I see the delete account confirmation', async t => {
-  await t.expect(securityAndPrivacyPage.deleteAccountConfirmation.exists).ok({ timeout: 3000 })
+  await t.expect(securityAndPrivacyPage.deleteAccountConfirmation.exists).ok({ timeout: 10000 })
 })

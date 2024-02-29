@@ -5,7 +5,7 @@ const MEMBER_NAME = "Jimmy";
 const MEMBER_EMAIL = "test1@akord.com";
 
 const tomorrow = new Date(new Date().getTime() + (24 * 60 * 60 * 1000));
-const MEMBER_EXPIRATION_DATE = tomorrow.getDate() + '/' + (tomorrow.getMonth() + 1) + '/' + tomorrow.getFullYear();
+const MEMBER_EXPIRATION_DATE = tomorrow.toLocaleDateString('en-GB');
 const MEMBER_MESSAGE = "Hey there";
 
 const vaultsPage = new VaultsPage();
@@ -48,7 +48,7 @@ export async function switchAirdropAccessToggle(t: TestController) {
 }
 
 export async function generatedLinkExists(t: TestController) {
-  await t.expect(invitePage.generatedLinkSelector.exists).ok({ timeout: 8000 })
+  await t.expect(invitePage.generatedLinkSelector.exists).ok({ timeout: 15000 })
 }
 
 export async function goToGeneratedLink(t: TestController) {

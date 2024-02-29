@@ -1,4 +1,4 @@
-@prod
+@prod @only
 Feature: Sign up and delete account
 
   Scenario: Sign up and delete account

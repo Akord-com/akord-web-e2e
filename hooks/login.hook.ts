@@ -3,17 +3,27 @@ import { LoginPage } from '../pages/login.page';
 import { getEnvironment } from '../helper/environment.helper';
 
 Before('@login', async (t) => {
-  await openLoginPage(t);
-  await fillUsernameAndPassword(t);
-  await clickLoginButton(t);
+  await login(t);
 });
 
 Before('@login_keep_me_signed_in', async (t) => {
+  await loginKeepMeSignedIn(t);
+});
+
+export const login = async (t: TestController) => {
+  await openLoginPage(t);
+  await fillUsernameAndPassword(t);
+  await clickLoginButton(t);
+  await t.wait(5000);
+}
+
+export const loginKeepMeSignedIn = async (t: TestController) => {
   await openLoginPage(t);
   await fillUsernameAndPassword(t);
   await tickKeepMeSignedIn(t);
   await clickLoginButton(t);
-});
+  await t.wait(5000);
+}
 
 const appLoginPage = new LoginPage();
 

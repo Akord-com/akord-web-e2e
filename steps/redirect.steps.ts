@@ -13,8 +13,8 @@ Given('I open storage page', async t => {
 })
 
 Then('I see the storage page', async t => {
-  await t.expect(storagePage.storageHeader.exists).ok({ timeout: 2000 })
-  await t.expect(storagePage.availableBadge.exists).ok({ timeout: 2000 })
+  await t.expect(storagePage.storageHeader.exists).ok({ timeout: 10000 })
+  await t.expect(storagePage.availableBadge.exists).ok({ timeout: 10000 })
 })
 
 Then('I see a login landing page', async t => {

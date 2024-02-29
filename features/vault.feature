@@ -18,7 +18,9 @@ Feature: Vault create and remove
     Then I see the vaults page
     And I see new vault created
     When I click on the vault
-    And I click on vault menu
+    Then I see add file page
+    And I see vault menu
+    When I click on vault menu
     Then I see deactivate vault action
     When I click on deactivate the vault
     Then I see the confirm deactivate dialog

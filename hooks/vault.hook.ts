@@ -2,6 +2,7 @@ import { After, Before } from '@cucumber/cucumber';
 import { VaultsPage } from '../pages/vaults.page';
 import { AddVaultPage } from '../pages/add-vault.page';
 import { VaultPage } from '../pages/vault.page';
+import { loginKeepMeSignedIn } from './login.hook';
 
 const vaultsPage = new VaultsPage();
 const vaultPage = new VaultPage();
@@ -13,7 +14,8 @@ const TEST_MESSAGE = 'test message'
 
 
 Before('@vault_on', async (t) => {
-  await openVaultsPage(t)
+  await loginKeepMeSignedIn(t);
+  await openVaultsPage(t);
   await clickAddVaultButton(t)
   await clickCloudStorage(t);
   await clickNext(t);
@@ -40,6 +42,7 @@ After('@vault_off', async (t) => {
 
 export async function openVaultsPage(t: TestController) {
   await t.navigateTo(vaultsPage.url);
+  await t.expect(vaultsPage.vaultsHeader.exists).ok({ timeout: 10000 })
 }
 
 export async function fillVaultName(t: TestController) {
@@ -62,6 +65,7 @@ export async function clickInactiveVaultsPage(t: TestController) {
 }
 
 export async function clickAddVaultButton(t: TestController) {
+  await t.expect(vaultsPage.addVaultButton.exists).ok({ timeout: 10000 });
   await t.click(vaultsPage.addVaultButton);
 }
 
@@ -70,7 +74,6 @@ export async function clickCreateVaultButton(t: TestController) {
 }
 
 export async function clickVaultName(t: TestController, name?: string) {
-  await t.wait(3000);
   await t.click(vaultsPage.findVault(name || TEST_VAULT_NAME));
 }
 
@@ -120,23 +123,23 @@ export async function postTestMessage(t: TestController) {
   await t.click(vaultPage.postMessage)
 }
 
-export async function findTestVault() {
+export function findTestVault() {
   return vaultsPage.findVault(TEST_VAULT_NAME);
 }
 
-export async function findUploadedFile() {
+export function findUploadedFile() {
   return vaultsPage.findVault(TEST_UPLOAD_FILE);
 }
 
-export async function findUploadedFileDuplicate() {
+export function findUploadedFileDuplicate() {
   return vaultsPage.findVault(TEST_UPLOAD_FILE_DUPLICATE);
 }
 
-export async function findFileWithTwoVersions() {
+export function findFileWithTwoVersions() {
   return vaultsPage.findStackByVersionsNumber("2");
 }
 
-export async function findTestMessagePosted(t: TestController) {
+export function findTestMessagePosted(t: TestController) {
   return vaultPage.findMessagePosted(TEST_MESSAGE)
 }
 
