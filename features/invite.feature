@@ -8,7 +8,8 @@ Feature: Invite
     And I click on vault menu
     Then I see invite to vault action
     When I click on invite to vault
-    And I switch the airdrop access toggle
+    Then I see invite page
+    When I switch the airdrop access toggle
     And I fill in the member name form
     And I fill in the expiration date form
     When I click the generate link button

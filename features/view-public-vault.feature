@@ -1,4 +1,4 @@
-@only @prod @dev
+@prod @dev
 Feature: Public vault view
   
   Scenario: Show public vault

@@ -1,4 +1,4 @@
-@dev @prod @login_keep_me_signed_in
+@dev @prod
 Feature: Upload file to vault
   
   @vault_on
@@ -12,6 +12,7 @@ Feature: Upload file to vault
     When I click on upload dialog box
     Then I see uploaded file
   
+  @login_keep_me_signed_in
   Scenario: Upload the same file to vault and keep both
     Given I see the vault page
     And I see new vault created
@@ -23,7 +24,7 @@ Feature: Upload file to vault
     When I click on upload dialog box
     Then I see uploaded file duplicate
 
-  @vault_off
+  @login_keep_me_signed_in @vault_off
   Scenario: Upload the same file to vault and replace it
     Given I see the vault page
     And I see new vault created

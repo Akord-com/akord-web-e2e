@@ -3,8 +3,10 @@ import { Selector } from 'testcafe'
 import { clickGenerateLinkButton, clickInviteButton, fillEmailMessage, fillExpirationDate, fillMemberEmail, fillMemberName, generatedLinkExists, goToGeneratedLink, switchAirdropAccessToggle } from '../hooks/invite.hook'
 import { clickVaultName } from '../hooks/vault.hook'
 import { VaultsPage } from '../pages/vaults.page'
+import { InvitePage } from '../pages/invite.page'
 
 const vaultsPage = new VaultsPage()
+const invitePage = new InvitePage()
 
 const privateVaultName = "Please don't delete me"
 
@@ -36,8 +38,12 @@ When('I click the invite to vault button', async t => {
   await clickInviteButton(t)
 })
 
+Then('I see invite page', async t => {
+  await t.expect(invitePage.header.exists).ok({ timeout: 10000 })
+})
+
 Then('I see the private vault', async t => {
-  await t.expect(await (vaultsPage.findVault(privateVaultName)).exists).ok();
+  await t.expect(vaultsPage.findVault(privateVaultName).exists).ok({ timeout: 10000 });
 })
 
 Then('I click on the private vault', async t => {
