@@ -17,6 +17,7 @@ export class InvitePage {
   selectAirdropAccess: Selector
   selectExpirationDate: Selector
   generatedLink: string
+  airdropAccessLinkHeaderSelector: Selector
   generatedLinkSelector: Selector
 
   constructor() {
@@ -28,6 +29,7 @@ export class InvitePage {
     this.memberName = '#enter-email-0'
     this.expirationDate = '#expiration-date'
     this.generatedLink = '#text'
+    this.airdropAccessLinkHeaderSelector = Selector('h3').withText('Airdrop access link')
     this.generatedLinkSelector = Selector('p').withText('vaults/active')
     this.selectExpirationDate = Selector(this.expirationDate)
 

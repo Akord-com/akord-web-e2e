@@ -47,8 +47,16 @@ export async function switchAirdropAccessToggle(t: TestController) {
   await t.click(invitePage.selectAirdropAccess);
 }
 
+export async function noLongerGenerateLinkButton(t: TestController) {
+  await t.expect(invitePage.generateLinkButton.exists).notOk({ timeout: 20000 })
+}
+
+export async function airdropAccessLinkHeaderExists(t: TestController) {
+  await t.expect(invitePage.airdropAccessLinkHeaderSelector.exists).ok({ timeout: 10000 })
+}
+
 export async function generatedLinkExists(t: TestController) {
-  await t.expect(invitePage.generatedLinkSelector.exists).ok({ timeout: 30000 })
+  await t.expect(invitePage.generatedLinkSelector.exists).ok({ timeout: 10000 })
 }
 
 export async function goToGeneratedLink(t: TestController) {

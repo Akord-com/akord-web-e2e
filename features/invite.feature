@@ -13,6 +13,8 @@ Feature: Invite
     And I fill in the member name form
     And I fill in the expiration date form
     When I click the generate link button
+    Then I no longer see the generate link button
+    Then I see the airdrop access link header
     Then I see the generated link
     Then I navigate to the generated link
     Then I see the invite vault

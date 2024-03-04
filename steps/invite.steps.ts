@@ -1,6 +1,6 @@
 import { When, Then } from '@cucumber/cucumber'
 import { Selector } from 'testcafe'
-import { clickGenerateLinkButton, clickInviteButton, fillEmailMessage, fillExpirationDate, fillMemberEmail, fillMemberName, generatedLinkExists, goToGeneratedLink, switchAirdropAccessToggle } from '../hooks/invite.hook'
+import { airdropAccessLinkHeaderExists, clickGenerateLinkButton, clickInviteButton, fillEmailMessage, fillExpirationDate, fillMemberEmail, fillMemberName, generatedLinkExists, goToGeneratedLink, noLongerGenerateLinkButton, switchAirdropAccessToggle } from '../hooks/invite.hook'
 import { clickVaultName } from '../hooks/vault.hook'
 import { VaultsPage } from '../pages/vaults.page'
 import { InvitePage } from '../pages/invite.page'
@@ -48,6 +48,14 @@ Then('I see the private vault', async t => {
 
 Then('I click on the private vault', async t => {
   await clickVaultName(t, privateVaultName)
+})
+
+Then('I no longer see the generate link button', async t => {
+  await noLongerGenerateLinkButton(t);
+})
+
+Then('I see the airdrop access link header', async t => {
+  await airdropAccessLinkHeaderExists(t);
 })
 
 Then('I see the generated link', async t => {
