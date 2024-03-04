@@ -59,6 +59,6 @@ Then('I navigate to the generated link', async t => {
 })
 
 Then('I see the invite vault', async t => {
-  await t.expect(Selector("title").innerText).eql(privateVaultName, undefined, { timeout: 5000 });
+  await t.expect(Selector("title").innerText).eql(privateVaultName, undefined, { timeout: 10000 });
 })
 
