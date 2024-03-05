@@ -1,4 +1,4 @@
-@dev @prod @login_keep_me_signed_in @only
+@dev @prod @login_keep_me_signed_in
 Feature: Invite
 
   Scenario: Airdrop access to the vault

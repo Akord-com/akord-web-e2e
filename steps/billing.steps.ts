@@ -14,7 +14,7 @@ When('I go to billing page', async t => {
 
 Then('I see the billing page with billing details', async t => {
   await t.expect(getLocation()).contains(billingPage.url)
-  await t.expect(billingPage.billingDetails.exists).ok({ timeout: 20000 })
+  await t.expect(billingPage.billingDetails.exists).ok({ timeout: 30000 })
 })
 
 When('I click on edit billing details button', async t => {

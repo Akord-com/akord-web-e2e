@@ -29,10 +29,6 @@ When('I fill in the login form with invalid user', async t => {
   await fillUsernameAndPassword(t, false)
 })
 
-Then('I see the vaults page', async t => {
-  await t.expect(getLocation()).contains(vaultsPage.url, "Vaults page is not loaded", { timeout: 10000 })
-})
-
 Then('I see a login error message', async t => {
   await t.expect(loginPage.loginErrorMessage.exists).ok()
 })

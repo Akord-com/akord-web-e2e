@@ -18,6 +18,7 @@ export const login = async (t: TestController) => {
 }
 
 export const loginKeepMeSignedIn = async (t: TestController) => {
+  await t.resizeWindow(1366, 768); //force desktop view
   await openLoginPage(t);
   await fillUsernameAndPassword(t);
   await tickKeepMeSignedIn(t);

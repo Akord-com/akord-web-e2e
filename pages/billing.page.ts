@@ -17,6 +17,6 @@ export class BillingPage {
     this.billingDetails = Selector(this.billingDetailsId);
     this.editBillingDetailsButton = Selector(this.editBillingDetailsId);
     this.billingNameInput = Selector("input[name='name']");
-    this.saveBillingDetailsButton = Selector('button').withText('Save billing data');
+    this.saveBillingDetailsButton = Selector('button').withText('Change billing data');
   }
 }
