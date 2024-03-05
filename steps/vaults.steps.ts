@@ -167,7 +167,9 @@ Then('I see deactivate vault action', async t => {
 })
 
 Then('I see invite to vault action', async t => {
-  await t.expect(vaultPage.inviteVaultMenu.exists).ok({ timeout: 10000 })
+  await t.expect(vaultPage.inviteVaultMenu.exists).ok({ timeout: 2000 })
+  await t.expect(vaultPage.invite.exists).ok({ timeout: 2000 })
+  await t.expect(vaultPage.invite.parent().hasAttribute("aria-disabled")).notOk({ timeout: 20000 })
 })
 
 When('I open the page in new window', async t => {

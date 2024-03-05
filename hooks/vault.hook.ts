@@ -7,7 +7,7 @@ import { loginKeepMeSignedIn } from './login.hook';
 const vaultsPage = new VaultsPage();
 const vaultPage = new VaultPage();
 const addVaultPage = new AddVaultPage();
-const TEST_VAULT_NAME = Math.random().toString(36).substr(2, 10);
+const TEST_VAULT_NAME = Math.random().toString(36).substring(2, 10);
 const TEST_UPLOAD_FILE = "akord.png"
 const TEST_UPLOAD_FILE_DUPLICATE = "akord copy.png"
 const TEST_MESSAGE = 'test message'
