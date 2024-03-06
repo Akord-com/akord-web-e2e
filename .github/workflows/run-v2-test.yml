@@ -47,7 +47,7 @@ jobs:
       - name: Run TestCafe
         run: npm run e2e:headless-prod
       - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2
+        uses: EnricoMi/publish-unit-test-result-action/macos@v2
         if: always()
         with:
           files: |
