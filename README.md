@@ -10,7 +10,7 @@ E2e test set for akord.com
 
 Testcafe is used for running e2e tests. The tests are written in Cucumber/Gherkin.
 
-Tests are excuted against working environment. By default the environment under tests is `localhost:3000`. This can be altered over env variable: `E2E_URL` e.g. `E2E_URL=https://dev.akord.link`
+Tests are excuted against working environment. By default the environment under tests is `https://dev.akord.link`. This can be altered over env variable: `E2E_URL` e.g. `export E2E_URL=http://localhost:3000`
 
 To run e2e tests:
 `npm run e2e`

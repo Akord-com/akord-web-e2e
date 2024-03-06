@@ -7,7 +7,7 @@ import { loginKeepMeSignedIn } from './login.hook';
 const vaultsPage = new VaultsPage();
 const vaultPage = new VaultPage();
 const addVaultPage = new AddVaultPage();
-const TEST_VAULT_NAME = Math.random().toString(36).substr(2, 10);
+const TEST_VAULT_NAME = Math.random().toString(36).substring(2, 10);
 const TEST_UPLOAD_FILE = "akord.png"
 const TEST_UPLOAD_FILE_DUPLICATE = "akord copy.png"
 const TEST_MESSAGE = 'test message'
@@ -15,7 +15,7 @@ const TEST_MESSAGE = 'test message'
 
 Before('@vault_on', async (t) => {
   await loginKeepMeSignedIn(t);
-  await openVaultsPage(t);
+  await goToVaultsPage(t);
   await clickAddVaultButton(t)
   await clickCloudStorage(t);
   await clickNext(t);
@@ -24,24 +24,31 @@ Before('@vault_on', async (t) => {
   await fillVaultName(t)
   await fillDescription(t);
   await fillVaultTags(t);
-  await clickCreateVaultButton(t)
+  await clickCreateVaultButton(t);
 });
 
 After('@vault_off', async (t) => {
-  await openVaultsPage(t)
+  await goToVaultsPage(t);
+  await onVaultsPage(t);
+  
   await clickVaultName(t);
   await clickVaultMenu(t);
   await clickDeactivate(t);
   await clickConfirmDeactivate(t);
-  await openVaultsPage(t)
+  await goToVaultsPage(t);
+  await onVaultsPage(t);
   await clickInactiveVaultsPage(t);
   await clickMenu(t);
   await clickRemove(t);
   await clickConfirmRemove(t);
 });
 
-export async function openVaultsPage(t: TestController) {
+export async function goToVaultsPage(t: TestController) {
   await t.navigateTo(vaultsPage.url);
+  await t.expect(vaultsPage.vaultsHeader.exists).ok({ timeout: 10000 })
+}
+
+export async function onVaultsPage(t: TestController) {
   await t.expect(vaultsPage.vaultsHeader.exists).ok({ timeout: 10000 })
 }
 
@@ -70,10 +77,12 @@ export async function clickAddVaultButton(t: TestController) {
 }
 
 export async function clickCreateVaultButton(t: TestController) {
+  await t.expect(vaultsPage.createVaultButton.exists).ok({ timeout: 10000 });
   await t.click(vaultsPage.createVaultButton);
 }
 
 export async function clickVaultName(t: TestController, name?: string) {
+  await t.expect(vaultsPage.findVault(name || TEST_VAULT_NAME).exists).ok({ timeout: 10000 });
   await t.click(vaultsPage.findVault(name || TEST_VAULT_NAME));
 }
 
@@ -121,6 +130,10 @@ export async function postTestMessage(t: TestController) {
   await t
     .typeText(vaultPage.message, TEST_MESSAGE, { paste: false })
   await t.click(vaultPage.postMessage)
+}
+
+export function findTestVaultCreating() {
+  return vaultsPage.findVaultCreating(TEST_VAULT_NAME);
 }
 
 export function findTestVault() {

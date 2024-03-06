@@ -11,10 +11,6 @@ const MEMBER_MESSAGE = "Hey there";
 const vaultsPage = new VaultsPage();
 const invitePage = new InvitePage();
 
-export async function openVaultsPage(t: TestController) {
-  await t.navigateTo(vaultsPage.url);
-}
-
 export async function fillMemberName(t: TestController) {
   await t
     .typeText(invitePage.memberName, MEMBER_NAME, { paste: false })
@@ -27,7 +23,10 @@ export async function fillMemberEmail(t: TestController) {
 
 export async function fillExpirationDate(t: TestController) {
   await t
-    .typeText(invitePage.expirationDate, MEMBER_EXPIRATION_DATE, { paste: false })
+    .typeText(invitePage.selectExpirationDate, MEMBER_EXPIRATION_DATE, { paste: true, replace: true })
+		.pressKey('enter')
+		.pressKey('esc')
+		//.expect(invitePage.selectExpirationDate.value).eql(MEMBER_EXPIRATION_DATE);
 }
 
 export async function fillEmailMessage(t: TestController) {

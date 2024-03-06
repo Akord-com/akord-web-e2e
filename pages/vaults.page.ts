@@ -32,13 +32,12 @@ export class VaultsPage {
     this.account = Selector('span').withExactText('Account')
   }
 
-  findVault(id: string): Selector {
-    try {
-      return Selector('p').withExactText(id)
-    } catch (err) {
-      console.log(err)
-    }
-    return Selector('p');
+  findVaultCreating(name: string): Selector {
+    return Selector('p').withExactText(`${name} (Creating...)`)
+  }
+
+  findVault(name: string): Selector {
+    return Selector('p').withExactText(name)
   }
 
   findStackByVersionsNumber(versions: string): Selector {

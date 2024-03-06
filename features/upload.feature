@@ -3,7 +3,8 @@ Feature: Upload file to vault
   
   @vault_on
   Scenario: Upload file to vault
-    Given I see the vault page
+    Given I see the vaults page
+    And I see new vault creating
     And I see new vault created
     When I click on the vault
     Then I see add file page
@@ -14,7 +15,7 @@ Feature: Upload file to vault
   
   @login_keep_me_signed_in
   Scenario: Upload the same file to vault and keep both
-    Given I see the vault page
+    When I go to the vaults page
     And I see new vault created
     When I click on the vault
     When I click on upload a file
@@ -26,7 +27,7 @@ Feature: Upload file to vault
 
   @login_keep_me_signed_in @vault_off
   Scenario: Upload the same file to vault and replace it
-    Given I see the vault page
+    When I go to the vaults page
     And I see new vault created
     When I click on the vault
     When I click on upload a file

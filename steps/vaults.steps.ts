@@ -11,7 +11,8 @@ import {
   clickMenu,
   clickDeactivate,
   clickConfirmDeactivate,
-  openVaultsPage,
+  goToVaultsPage,
+  onVaultsPage,
   clickInactiveVaultsPage,
   clickNext,
   clickCloudStorage,
@@ -25,7 +26,8 @@ import {
   clickVaultMenu,
   findUploadedFileDuplicate,
   findFileWithTwoVersions,
-  clickInvite
+  clickInvite,
+  findTestVaultCreating
 } from '../hooks/vault.hook'
 import { VaultsPage } from '../pages/vaults.page'
 import { AddVaultPage } from '../pages/add-vault.page'
@@ -37,8 +39,8 @@ const vaultPage = new VaultPage()
 
 const getLocation = ClientFunction(() => document.location.href)
 
-Given('I see the vault page', async t => {
-  await openVaultsPage(t);  
+Given('I see the vaults page', async t => {
+  await onVaultsPage(t);  
 })
 
 Given('I open public vault page', async t => {
@@ -158,6 +160,10 @@ When('I refresh the page', async t => {
   await t.wait(4000)
 })
 
+When('I go to the vaults page', async t => {
+  await goToVaultsPage(t)
+})
+
 Then('I see vault menu', async t => {
   await t.expect(vaultPage.menuHeaderButton.exists).ok({ timeout: 10000 })
 })
@@ -167,7 +173,9 @@ Then('I see deactivate vault action', async t => {
 })
 
 Then('I see invite to vault action', async t => {
-  await t.expect(vaultPage.inviteVaultMenu.exists).ok({ timeout: 10000 })
+  await t.expect(vaultPage.inviteVaultMenu.exists).ok({ timeout: 2000 })
+  await t.expect(vaultPage.invite.exists).ok({ timeout: 2000 })
+  await t.expect(vaultPage.invite.parent().hasAttribute("aria-disabled")).notOk({ timeout: 20000 })
 })
 
 When('I open the page in new window', async t => {
@@ -213,6 +221,10 @@ Then('I see the vaults page', async t => {
   await t.expect(vaultsPage.vaultsHeader.exists).ok({ timeout: 10000 })
 })
 
+Then('I see new vault creating', async t => {
+  await t.expect(findTestVaultCreating().exists).ok({ timeout: 10000 })
+})
+
 Then('I see new vault created', async t => {
   await t.expect(findTestVault().exists).ok({ timeout: 10000 })
 })
@@ -249,7 +261,8 @@ Then('I see the confirm remove dialog', async t => {
 })
 
 Then('I see the deactivated vault', async t => {
-  await openVaultsPage(t)
+  await goToVaultsPage(t)
+  await onVaultsPage(t)
   await clickInactiveVaultsPage(t)
   await t.expect(findTestVault().exists).ok({ timeout: 10000 })
 })
