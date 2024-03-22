@@ -30,7 +30,7 @@ Before('@vault_on', async (t) => {
 After('@vault_off', async (t) => {
   await goToVaultsPage(t);
   await onVaultsPage(t);
-  
+
   await clickVaultName(t);
   await clickVaultMenu(t);
   await clickDeactivate(t);
@@ -79,6 +79,7 @@ export async function clickAddVaultButton(t: TestController) {
 export async function clickCreateVaultButton(t: TestController) {
   await t.expect(vaultsPage.createVaultButton.exists).ok({ timeout: 10000 });
   await t.click(vaultsPage.createVaultButton);
+  await t.wait(5000);
 }
 
 export async function clickVaultName(t: TestController, name?: string) {

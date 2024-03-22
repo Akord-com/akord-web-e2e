@@ -3,7 +3,7 @@ import { Selector } from 'testcafe'
 
 
 const uriId = getEnvironment().url.href === 'https://dev.akord.link/' ? getEnvironment().examplePublicFileUriIdDev : getEnvironment().examplePublicFileUriIdProd 
-const examplePublicVaultUri = `public/vaults/active/${uriId}/assets`
+const examplePublicVaultUri = `public/vaults/active/${uriId}/gallery`
 const examplePublicVaultName = "Please don't delete me this time!"
 
 export class VaultPage {

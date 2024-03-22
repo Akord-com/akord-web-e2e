@@ -145,6 +145,7 @@ When('I click on remove the vault', async t => {
 
 When('I click on invite to vault', async t => {
   await clickInvite(t)
+  await t.wait(5000)
 })
 
 When('I click on deactivate vault button', async t => {
