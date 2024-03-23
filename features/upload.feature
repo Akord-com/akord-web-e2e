@@ -4,7 +4,6 @@ Feature: Upload file to vault
   @vault_on
   Scenario: Upload file to vault
     Given I see the vaults page
-    And I see new vault creating
     And I see new vault created
     When I click on the vault
     Then I see add file page

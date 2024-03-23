@@ -25,6 +25,7 @@ Before('@vault_on', async (t) => {
   await fillDescription(t);
   await fillVaultTags(t);
   await clickCreateVaultButton(t);
+  await goToVaultsPage(t);
 });
 
 After('@vault_off', async (t) => {
@@ -45,6 +46,7 @@ After('@vault_off', async (t) => {
 
 export async function goToVaultsPage(t: TestController) {
   await t.navigateTo(vaultsPage.url);
+  await t.wait(1000);
   await t.expect(vaultsPage.vaultsHeader.exists).ok({ timeout: 10000 })
 }
 
