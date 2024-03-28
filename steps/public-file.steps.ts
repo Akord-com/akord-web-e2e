@@ -8,10 +8,12 @@ Given('I open gallery page with public file', async t => {
 })
 
 Then('I see public file in gallery', async t => {
+  await t.wait(5000);
   await t.expect(galleryPage.examplePublicFileTitle.exists).ok({ timeout: 5000 })
 })
 
 
 export async function openGalleryWithPublicFile(t: TestController) {
+  await t.wait(5000);
   await t.navigateTo(galleryPage.examplePublicFileUrl);
 }
