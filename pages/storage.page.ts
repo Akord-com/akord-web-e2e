@@ -9,7 +9,7 @@ export class StoragePage {
   cloudStorageSection: Selector
   topUpButton: Selector;
   availableStorage: Selector;
-  availableStorageId = '#storage-available';
+  availableStorageId = '#storage-available-permanent';
 
   constructor() {
     this.host = getEnvironment().url.hostname
