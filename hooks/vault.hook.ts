@@ -27,6 +27,7 @@ Before('@vault_on', async (t) => {
   await clickCreateVaultButton(t);
   await t.wait(5000);
   await redirectedToNewVaultPage(t);
+  await goToVaultsPage(t);
 });
 
 After('@vault_off', async (t) => {
