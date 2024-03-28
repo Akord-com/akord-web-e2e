@@ -5,6 +5,7 @@ export class VaultsPage {
   host: string
   url: string
   vaultsCreateHeader: Selector
+  addFileHeader: Selector
   vaultsHeader: Selector
   addVaultButton: Selector
   createVaultButton: Selector
@@ -19,7 +20,8 @@ export class VaultsPage {
   constructor() {
     this.host = getEnvironment().url.hostname
     this.url = `${getEnvironment().url.href}vaults/active`
-    this.vaultsCreateHeader = Selector('h1').withText('Create your first vault')
+    this.vaultsCreateHeader = Selector("h1").withText("Time to secure your data – permanently.");
+    this.addFileHeader = Selector("h1").withText("Time to secure your data – permanently.");
     this.vaultsHeader = Selector('h2').withText('Vaults')
     this.addVaultButton = Selector('button').withText('New vault')
     this.createVaultButton = Selector('button').withText('Create vault')

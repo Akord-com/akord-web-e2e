@@ -25,7 +25,8 @@ Before('@vault_on', async (t) => {
   await fillDescription(t);
   await fillVaultTags(t);
   await clickCreateVaultButton(t);
-  await goToVaultsPage(t);
+  await t.wait(5000);
+  await redirectedToNewVaultPage(t);
 });
 
 After('@vault_off', async (t) => {
@@ -36,6 +37,7 @@ After('@vault_off', async (t) => {
   await clickVaultMenu(t);
   await clickDeactivate(t);
   await clickConfirmDeactivate(t);
+  await t.wait(5000);
   await goToVaultsPage(t);
   await onVaultsPage(t);
   await clickInactiveVaultsPage(t);
@@ -48,6 +50,10 @@ export async function goToVaultsPage(t: TestController) {
   await t.navigateTo(vaultsPage.url);
   await t.wait(1000);
   await t.expect(vaultsPage.vaultsHeader.exists).ok({ timeout: 10000 })
+}
+
+export async function redirectedToNewVaultPage(t: TestController) {
+  await t.expect(vaultPage.addFileHeader.exists).ok({ timeout: 10000 });
 }
 
 export async function onVaultsPage(t: TestController) {

@@ -33,10 +33,10 @@ export class AddVaultPage {
     this.choosePrivacySettings = Selector('span').withText('Choose the privacy setting for your vault.')
     this.vaultsHeader = Selector('h2').withText('Vaults')
     this.addVaultButton = Selector('button').withText('Create vault')
-    this.selectCloudStorage = Selector('#main .PrivateSwitchBase-input.css-1m9pwf3').nth(1)
-    this.selectBlockchainStorage = Selector('#main .PrivateSwitchBase-input.css-1m9pwf3')
-    this.selectPrivateVault = Selector('#main .PrivateSwitchBase-input.css-1m9pwf3')
-    this.selectPublicVault = Selector('#main .PrivateSwitchBase-input.css-1m9pwf3').nth(1)
+    this.selectCloudStorage = Selector("input").withAttribute("aria-label", "Cloud");
+    this.selectBlockchainStorage = Selector("input").withAttribute("aria-label", "Permanent");
+    this.selectPrivateVault = Selector("input").withAttribute("aria-label", "Private");
+    this.selectPublicVault = Selector("input").withAttribute("aria-label", "Public");
     this.next = Selector('button').withText('Next')
     this.url = `${getEnvironment().url.href}create-vault`
     this.privacyUrl = `${getEnvironment().url.href}create-vault/privacy`
