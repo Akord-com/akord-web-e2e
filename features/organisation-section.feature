@@ -1,5 +1,5 @@
 Feature: Organisation section visible after Mountain plan
-  
+
   Scenario: Organisation section visibility
     Given I see the vaults page
     When I click on the account link
